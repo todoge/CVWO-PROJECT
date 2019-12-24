@@ -1,3 +1,3 @@
 Rails.application.routes.draw do
-root 'todo#index'
+  root 'todo#index'
 end

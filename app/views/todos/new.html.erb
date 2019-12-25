@@ -1,0 +1,4 @@
+<h1>Create a new Todo</h1>
+<%= form_with(model: @todo, local: true) do |form| %>
+  <%= react_component 'New_form', { todo: @todo } %>
+<% end %>

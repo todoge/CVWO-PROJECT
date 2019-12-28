@@ -4,10 +4,16 @@ class TodosController < ApplicationController
   end
   
   def create
-    render plain: params[:todo].inspect
-#    @todo = Todo.new(todo_params)
-#    @todo.save
-#    redirect_to "root"
+    @todo = Todo.new(todo_params)
+    if @todo.save
+      redirect_to(@todo, :flash => [:success, :info])
+    else
+      render 'new'
+    end
+  end
+  
+  def show
+    @todo = Todo.find(params[:id])
   end
   
   private

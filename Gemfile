@@ -24,6 +24,9 @@ gem 'jbuilder', '~> 2.7'
 # Use Active Model has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
 
+#flash messages
+gem "bootstrap_flash_messages", "~> 1.0.1"
+
 # Use Active Storage variant
 # gem 'image_processing', '~> 1.2'
 

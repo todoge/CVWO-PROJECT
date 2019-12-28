@@ -1,0 +1,16 @@
+en:
+  flash_messages:
+    #
+    # These are the translations for the different headings.
+    #
+    headings:
+      success: "Success!"
+      info: "Info!"
+      warning: "Warning!"
+      error: "Error!"
+    
+    defaults:
+        success: "It worked!"
+        info: "There's something you need to know..."
+        warning: "You should watch out now."
+        error: "Oh no! Something went wrong."

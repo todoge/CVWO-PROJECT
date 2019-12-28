@@ -1,7 +1,9 @@
-<div id="nav"></div>
-<h1>Welcome</h1>
-<div id="hello"></div>
+<%= react_component 'MainNav' %>
+<h1>Show selected Todo</h1>
+<p>
+  Title: <%= @todo.title %>
+</p>
 
-<%= javascript_pack_tag 'index' %>
-
-<span id="todo_item"></span>
+<p>
+  Description: <%= @todo.description %>
+</p>

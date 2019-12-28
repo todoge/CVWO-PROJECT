@@ -1,6 +1,6 @@
 import React from 'react'
+
 class NewForm extends React.Component{
-    
     constructor(props){
         super(props);
         this.state = {
@@ -10,7 +10,7 @@ class NewForm extends React.Component{
         this.handleTitleChange = this.handleTitleChange.bind(this);
         this.handleDescriptionChange = this.handleDescriptionChange.bind(this);
     }
-    
+  
     handleTitleChange = (event) =>{
         this.setState({
             title: event.target.value
@@ -22,11 +22,11 @@ class NewForm extends React.Component{
             description: event.target.value
         })
     }
-    
+      
     render(){
         return(
                 <form role='form' acceptCharset="UTF-8" action="/todos" method="post">
-                    <input type='hidden' name='authenticity_token' value={this.props.authenticity_token} />
+                       <input type='hidden' name="authenticity_token" value= {this.props.authenticityToken} />
                     <div>
                         <label htmlFor='Todo_title'>Title:</label><br/>
                         <input type="text" name='todo[title]' id = 'Todo_title' value={this.state.title} onChange={this.handleTitleChange}/>
@@ -37,7 +37,7 @@ class NewForm extends React.Component{
                     </div>
                     <button type='submit'>Submit</button>
                 </form>
-        )
+        );
     }
 };
 

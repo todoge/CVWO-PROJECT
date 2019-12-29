@@ -4,5 +4,8 @@ The Computing for Voluntary Welfare Organisations (CVWO) is a project under the 
 Name: Peh Jun Siang
 Student ID: A0201838H
 ------------------------------------------------------------------
-ScreenShot of Application<br />
+ScreenShot of Application
+<br />
 ![](/app/assets/images/midsub.PNG?raw=true)
+<br />
+[Write-up for this mid submission](Mid-sub.pdf)

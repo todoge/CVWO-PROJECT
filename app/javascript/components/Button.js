@@ -1,23 +1,27 @@
 import React, {Component} from 'react'
+import {Button, Card, CardBody, CardGroup, Col, Container, Input, InputGroup, InputGroupAddon, InputGroupText, Row, NavLink  } from 'react-bootstrap';
 
-class Button extends Component{
-    
+class Btn extends Component{
     constructor(props){
         super(props)
         this.state = {
-            className = props.button.className,
-            style = props.button.style
+            styleClass: this.styleClass,
+            value: this.value,
+            link: this.link
         }
+        this.routeChange = this.routeChange.bind(this);
     }
-    
-    
-  render(){ function() {
-    return (
-      <button className={this.props.className} style={this.props.buttonStyle} onClick={this.handleClick}>
-          {this.props.label}
-      </button>
-    );
-  }
-}};
+    routeChange = () => {
+        window.location.href= this.props.link
+    }
+    render(){
+        return(
+                <button className = {`btn ${this.props.styleClass}`} onClick={this.routeChange} >
+                    {this.props.value}
+                </button>      
+            )
+    }
+}
 
-export default Button
+export default Btn
+

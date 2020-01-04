@@ -1,4 +1,6 @@
-<%= react_component 'MainNav' %>
-<h1>Show all Todos</h1>
-<%= react_component 'Button', {styleClass:"btn-primary", value:"Create a new Todo", link: new_todo_path } %>
-<%= react_component 'Index', { todo: @todo, authenticityToken: form_authenticity_token} %>
+<%#= react_component 'MainNav' %>
+<%#*<h1>Show all Todos</h1>%>
+<%#= react_component 'Button', {styleClass:"btn-primary", value:"Create a new Todo", link: new_todo_path } %>
+<%#= react_component 'Index', { todo: @todo, authenticityToken: form_authenticity_token} %>
+<div id="root"></div>
+<%= javascript_pack_tag 'index' %>

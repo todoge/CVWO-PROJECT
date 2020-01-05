@@ -1,3 +1,4 @@
 Rails.application.routes.draw do
-  resources :todos
+  root "todos#index"
+  match '*path' , to:"todos#index", via: :all
 end

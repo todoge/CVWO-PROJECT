@@ -1,3 +1,16 @@
-* {
-    color:red;
+$cool-purple: #7A43B6;
+$dark-purple: #7f05a8;
+
+.bg-purple {
+    background-color: $cool-purple;
+}
+
+.bg-dark-purple {
+    background-color: $dark-purple;
+}
+
+#title-font {
+    font-size: 2.5 rem;
+    font-weight: bold;
+    color: black;
 }

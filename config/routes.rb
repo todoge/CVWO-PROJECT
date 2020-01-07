@@ -1,5 +1,12 @@
 Rails.application.routes.draw do
-  root "todos#index"
-  get "Todo", to:"todos#Todo"
-  get '/*path' => 'todos#index'
+  namespace :api do
+    namespace :v1 do
+      get 'todos/index'
+      get 'todos/create'
+      get 'todos/show'
+      get 'todos/destroy'
+    end
+  end
+  root 'homepage#index'
+  get '/*path' => 'homepage#index'
 end

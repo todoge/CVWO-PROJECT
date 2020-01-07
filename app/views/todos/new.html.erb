@@ -1,7 +1,0 @@
-<%= react_component 'MainNav' %>
-<h1>Create a new Todo</h1>
-<%= render 'layouts/partials/errorMessages' %>
-
-<%= form_with(model: @todo) do |form| %>
-  <%= react_component 'New_form', { todo: @todo, authenticityToken: form_authenticity_token} %>
-<% end %>

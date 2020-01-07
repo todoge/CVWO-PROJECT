@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
   root "todos#index"
-  match '*path' , to:"todos#index", via: :all
+  get "Todo", to:"todos#Todo"
+  get '/*path' => 'todos#index'
 end

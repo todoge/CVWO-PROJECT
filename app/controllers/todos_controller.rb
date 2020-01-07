@@ -1,7 +1,5 @@
 class TodosController < ApplicationController
-  def index
-    
-  end
+ 
 #  def new
 #    @todo = Todo.new
 #  end
@@ -32,10 +30,14 @@ class TodosController < ApplicationController
 #    end
 #  end
 #  
-#  def index
-#    @todo = Todo.all
-#  end
+  def index
+   
+  end
 #  
+ def Todo
+    @todo = Todo.all
+    render json: @todo
+ end
 #  private
 #  def todo_params
 #    params.require(:todo).permit(:title, :description)

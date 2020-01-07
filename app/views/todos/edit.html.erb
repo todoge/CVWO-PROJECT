@@ -1,7 +1,0 @@
-<%= react_component 'MainNav' %>
-<h1>Edit Todo</h1>
-<%= render 'layouts/partials/errorMessages' %>
-
-<%= form_for @todo do |form| %>
-  <%= react_component 'Edit_form', { todo: @todo, authenticityToken: form_authenticity_token} %>
-<% end %>

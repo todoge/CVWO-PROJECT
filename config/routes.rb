@@ -4,7 +4,7 @@ Rails.application.routes.draw do
       get 'todos/index'
       post 'todos/create'
       get 'todos/show'
-      get 'todos/destroy'
+      delete 'todos/:id', to: 'todos#destroy'
     end
   end
   root 'homepage#index'

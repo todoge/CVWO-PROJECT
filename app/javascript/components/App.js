@@ -9,8 +9,31 @@ class App extends React.Component {
     this.state = {
       Todos: []
     };
+    this.DeleteTodoHandler = this.DeleteTodoHandler.bind(this);
   }
+  
+  DeleteTodoHandler(id){
+    const url = `/api/v1/todos/${id}`;
+    const token = document.querySelector('meta[name="csrf-token"]').content;
 
+    fetch(url, {
+      method: "DELETE",
+      headers: {
+        "X-CSRF-Token": token,
+        "Content-Type": "application/json"
+      }
+    })
+      .then(response => {
+        if (response.ok) {
+          return response.json();
+        }
+        throw new Error("Network response was not ok.");
+      })
+      .then(() => this.props.history.push("/"))
+      .then(() => this.props.history.goBack())
+      .catch(error => console.log(error.message));
+  }
+  
   componentDidMount() {
       const url = "/api/v1/todos/index";;
       fetch(url)
@@ -35,7 +58,7 @@ class App extends React.Component {
                     <div className="col-6">
                         <div className="text-white mb-3">
                         <div className="card-header bg-purple" id="title-font">All the things to do....</div>
-                            {Todos.map((item)=>(<TodoItem key={item.id} title={item.title} description = {item.description}/>))}
+                            {Todos.map((item)=>(<TodoItem key={item.id} todo={item} Delete={this.DeleteTodoHandler}/>))}
                         </div>
                     </div>
                     <div className="col-3">

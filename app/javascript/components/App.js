@@ -12,6 +12,19 @@ class App extends React.Component {
     this.DeleteTodoHandler = this.DeleteTodoHandler.bind(this);
   }
   
+  componentDidMount() {
+      const url = "/api/v1/todos/index";;
+      fetch(url)
+        .then(response => {
+          if (response.ok) {
+            return response.json();
+          }
+          throw new Error("Network response was not ok.");
+        })
+        .then(response => this.setState({ Todos: response }))
+        .catch(() => this.props.history.push("/PageNotFound"));
+  }
+  
   DeleteTodoHandler(id){
     const url = `/api/v1/todos/${id}`;
     const token = document.querySelector('meta[name="csrf-token"]').content;
@@ -32,19 +45,6 @@ class App extends React.Component {
       .then(() => this.props.history.push("/"))
       .then(() => this.props.history.goBack())
       .catch(error => console.log(error.message));
-  }
-  
-  componentDidMount() {
-      const url = "/api/v1/todos/index";;
-      fetch(url)
-        .then(response => {
-          if (response.ok) {
-            return response.json();
-          }
-          throw new Error("Network response was not ok.");
-        })
-        .then(response => this.setState({ Todos: response }))
-        .catch(() => this.props.history.push("/PageNotFound"));
   }
   
   render(){

@@ -16,16 +16,18 @@ class Api::V1::TodosController < ApplicationController
   
   def show
     @todo = Todo.find(params[:id])
+    render json: @todo
   end
   
   def edit
     @todo = Todo.find(params[:id])
+    render json: @todo
   end
   
   def update
     @todo = Todo.find(params[:id])
     if @todo.update(todo_params)
-      redirect_to(@todo, :flash => [:success, :info])
+      render json: @todo
     else
       render 'update'
     end

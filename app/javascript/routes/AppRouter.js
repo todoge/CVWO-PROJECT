@@ -4,7 +4,9 @@ import Nav from "../components/MainNav"
 import App from "../components/App"
 import Home from "../components/Home"
 import New from "../components/New"
+import Edit from "../components/Edit"
 import ErrorRoute from "../components/404"
+import Show from "../components/Show"
 
 const Routes = ()=>(
     <BrowserRouter>
@@ -13,6 +15,8 @@ const Routes = ()=>(
             <Route component={Home} exact path="/" />
             <Route component={App} exact path="/todos" />
             <Route component={New} exact path="/todos/new" />
+            <Route component={Edit} exact path="/todos/:id/edit" />
+            <Route component={Show} exact path="/todos/:id" />
             <Route component={ErrorRoute}/>
         </Switch>
     </BrowserRouter>

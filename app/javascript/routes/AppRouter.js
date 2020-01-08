@@ -3,6 +3,7 @@ import React from 'react'
 import Nav from "../components/MainNav"
 import App from "../components/App"
 import Home from "../components/Home"
+import New from "../components/New"
 import ErrorRoute from "../components/404"
 
 const Routes = ()=>(
@@ -11,6 +12,7 @@ const Routes = ()=>(
         <Switch>
             <Route component={Home} exact path="/" />
             <Route component={App} exact path="/todos" />
+            <Route component={New} exact path="/todos/new" />
             <Route component={ErrorRoute}/>
         </Switch>
     </BrowserRouter>

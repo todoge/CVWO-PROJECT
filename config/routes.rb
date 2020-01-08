@@ -2,7 +2,7 @@ Rails.application.routes.draw do
   namespace :api do
     namespace :v1 do
       get 'todos/index'
-      get 'todos/create'
+      post 'todos/create'
       get 'todos/show'
       get 'todos/destroy'
     end

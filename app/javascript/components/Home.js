@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import {jumbotron} from "react-bootstrap"
 
 export default () => (
-  <div className="vw-100 vh-100 primary-color d-flex align-items-center justify-content-center">
+  <div className="vw-50 vh-100 primary-color d-flex align-items-center justify-content-center">
     <div className="jumbotron jumbotron-fluid bg-transparent">
       <div className="container secondary-color">
         <h1 className="display-4">Gérer</h1>

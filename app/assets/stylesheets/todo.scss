@@ -1,11 +1,11 @@
 $cool-purple: #7A43B6;
-$dark-purple: #7f05a8;
+$dark-purple: #30033b;
 
 .bg-purple {
     background-color: $cool-purple;
 }
 
-.bg-dark-purple {
+#main-navbar {
     background-color: $dark-purple;
 }
 
@@ -13,4 +13,8 @@ $dark-purple: #7f05a8;
     font-size: 2.5 rem;
     font-weight: bold;
     color: black;
+}
+
+.todo-item{
+    border-bottom: 2px solid white;
 }

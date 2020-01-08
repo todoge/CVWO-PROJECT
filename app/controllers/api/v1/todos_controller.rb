@@ -2,12 +2,13 @@ class Api::V1::TodosController < ApplicationController
  
   def new
     @todo = Todo.new
+    render json: @todo
   end
   
   def create
     @todo = Todo.new(todo_params)
     if @todo.save
-      redirect_to(@todo, :flash => [:success, :info])
+      render json: @todo
     else
       render 'new'
     end
@@ -34,6 +35,7 @@ class Api::V1::TodosController < ApplicationController
    @todo = Todo.all
     render json: @todo
   end
+  
   private
   def todo_params
     params.require(:todo).permit(:title, :description)

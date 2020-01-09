@@ -1,10 +1,12 @@
 import React from "react"
-import {Link} from "react-router-dom"
+import TodoForm from "../components/TodoForm"
 
 class EditTodo extends React.Component {
     constructor(props) {
     super(props);
     this.state = { todo: { title: "", description: "" } };
+    this.onChange = this.onChange.bind(this);
+    this.onSubmit = this.onSubmit.bind(this);
   }
 
   componentDidMount() {
@@ -25,53 +27,65 @@ class EditTodo extends React.Component {
       .catch(() => this.props.history.push("/todos/error"));
   }
 
+//    onChange(event) {
+//        this.setState((prevState)=>({
+//                todo: {
+//                    ...prevState.todo,
+//                    title: event.target.elements.todo.title.value,
+//                    description: event.target.elements.todo.description.value
+//                }
+//            }))
+//    }
+    onChange(event) {
+        event.persist();
+        this.setState((prevState)=>{
+            return {
+            todo:{
+                ...prevState.todo,
+                [event.target.name]: event.target.value
+            }}
+        });
+    }
+    onSubmit(event) {
+      event.preventDefault();
+      const _id = this.props.match.params.id;
+      const url = `/api/v1/${_id}/update`;
+      const { title, description } = this.state.todo;
 
+      if (this.state.todo.title.length === 0 || this.state.todo.description.length === 0)
+        return;
+
+      const body = {
+        title,
+        description
+      };
+
+    const token = document.querySelector('meta[name="csrf-token"]').content;
+    fetch(url, {
+      method: "PUT",
+      headers: {
+        "X-CSRF-Token": token,
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify(body)
+    })
+      .then(response => {
+        if (response.ok) {
+          return response.json();
+        }
+        throw new Error("Network response was not ok.");
+      })
+      .then(response => this.props.history.push(`/todos/${_id}`))
+      .catch(error => console.log(error.message));
+  }
 
 
   render() {
     return (
-      <div className="container mt-5">
-        <div className="row">
-          <div className="col-sm-12 col-lg-6 offset-lg-3">
-            <h1 className="font-weight-normal mb-5">
-              Add a new todo
-            </h1>
-            
-            <form onSubmit={this.onSubmit}>
-              <div className="form-group">
-                <label htmlFor="recipeName">Title</label>
-                <input
-                  type="text"
-                  name="title"
-                  value={this.state.todo.title}
-                  className="form-control"
-                  required
-                  onChange={this.onChange}
-                />
-              </div>
-              
-              <label htmlFor="instruction">Description</label>
-              <textarea
-                className="form-control"
-                value={this.state.todo.description}
-                name="description"
-                rows="5"
-                required
-                onChange={this.onChange}
-              />
-              <button type="submit" className="btn custom-button mt-3">
-                Edit!
-              </button>
-              <Link to="/todos" className="btn btn-link mt-3">
-                Back to todos
-              </Link>
-            </form>
-          </div>
-        </div>
-      </div>
-    );
-  }
-
+           <TodoForm onChange={this.onChange} onSubmit={this.onSubmit} 
+                formTitle="Edit Todo" submitBtn="Edit!" 
+                title={this.state.todo.title} description={this.state.todo.description}/>
+    )}
 }
 
 export default EditTodo;

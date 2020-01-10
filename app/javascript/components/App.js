@@ -62,7 +62,7 @@ class App extends React.Component {
                         </div>
                     </div>
                     <div className="col-3">
-                    <Link to="/todos/new" className="btn btn-primary">New Todo</Link>
+                    <Link to="/todos/new" className="btn my-large-btn">New Todo</Link>
                     </div>
                 </div>
             </div>

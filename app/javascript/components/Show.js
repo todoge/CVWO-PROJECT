@@ -46,10 +46,10 @@ class ShowTodo extends React.Component {
                     </div>
                     <div className="col-6">
                         <div className="card ">
-                            <h5 className="card-header">Featured</h5>
+                            <h5 className="card-header">Show Todo</h5>
                             <div className="card-body">
-                                <h5 className="card-title">Special title treatment</h5>
-                                <p className="card-text">With supporting text below as a natural lead-in to additional content.</p>
+                                <h5 className="card-title">{this.state.todo.title}</h5>
+                                <p className="card-text">{this.state.todo.description}</p>
                                 <Link to={"/todos/" + this.state.todo.id + "/edit"}>Edit Me</Link>
                             </div>
                         </div>

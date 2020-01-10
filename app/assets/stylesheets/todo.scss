@@ -24,3 +24,10 @@ $dark-purple: #30033b;
 #show-item{
     border: 3px solid $dark-purple;
 }
+
+.my-large-btn{
+    padding: 15px 32px;
+    background-color: $cool-purple;
+    text-align: center;
+    font-weight: bold;
+}

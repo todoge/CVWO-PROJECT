@@ -6,7 +6,7 @@ class NewTodo extends React.Component {
     super(props);
     this.state = {
       title: "",
-      description: ""
+      description: "",
     };
 
     this.onChange = this.onChange.bind(this);
@@ -27,14 +27,14 @@ class NewTodo extends React.Component {
   onSubmit(event) {
     event.preventDefault();
     const url = "/api/v1/todos/create";
-    const { title, description } = this.state;
+    const { title, description} = this.state;
 
     if (title.length === 0 || description.length === 0)
       return;
 
     const body = {
       title,
-      description
+      description,
     };
 
     const token = document.querySelector('meta[name="csrf-token"]').content;

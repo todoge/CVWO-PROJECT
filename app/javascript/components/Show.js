@@ -1,5 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import Moment from "react-moment"
 
 class ShowTodo extends React.Component {
   constructor(props) {
@@ -50,7 +51,16 @@ class ShowTodo extends React.Component {
                             <div className="card-body">
                                 <h5 className="card-title">{this.state.todo.title}</h5>
                                 <p className="card-text">{this.state.todo.description}</p>
-                                <Link to={"/todos/" + this.state.todo.id + "/edit"}>Edit Me</Link>
+                                
+                                <div className="d-flex justify-content-between">
+                                    <div>
+                                        <Link to={"/todos/" + this.state.todo.id + "/edit"}>Edit Me</Link>
+                                    </div>
+                                    <span className="text-white">
+                                        Updated <Moment parse="YYYY-MM-DD HH:mm" fromNow>{props.todo.updated_at}</Moment>
+                                    </span>
+                                </div>
+                
                             </div>
                         </div>
                     </div>

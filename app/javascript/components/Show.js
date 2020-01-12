@@ -5,7 +5,7 @@ import Moment from "react-moment"
 class ShowTodo extends React.Component {
   constructor(props) {
     super(props);
-    this.state = { todo: { title: "", description: "" } };
+    this.state = { todo:[] };
 
     this.addHtmlEntities = this.addHtmlEntities.bind(this);
   }
@@ -22,6 +22,7 @@ class ShowTodo extends React.Component {
     fetch(url)
       .then(response => {
         if (response.ok) {
+            console.log(response)
           return response.json();
         }
         throw new Error("Network response was not ok.");
@@ -56,8 +57,9 @@ class ShowTodo extends React.Component {
                                     <div>
                                         <Link to={"/todos/" + this.state.todo.id + "/edit"}>Edit Me</Link>
                                     </div>
-                                    <span className="text-white">
-                                        Updated <Moment parse="YYYY-MM-DD HH:mm" fromNow>{props.todo.updated_at}</Moment>
+                                    <span>
+                                        <p>Updated <Moment parse="YYYY-MM-DD HH:mm" fromNow>{this.state.todo.updated_at}</Moment></p>
+                                        <p>Created on<Moment parse="YYYY-MM-DD HH:mm" >{this.state.todo.created_at}</Moment></p>
                                     </span>
                                 </div>
                 

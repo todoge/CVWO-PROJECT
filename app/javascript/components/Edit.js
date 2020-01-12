@@ -27,15 +27,7 @@ class EditTodo extends React.Component {
       .catch(() => this.props.history.push("/todos/error"));
   }
 
-//    onChange(event) {
-//        this.setState((prevState)=>({
-//                todo: {
-//                    ...prevState.todo,
-//                    title: event.target.elements.todo.title.value,
-//                    description: event.target.elements.todo.description.value
-//                }
-//            }))
-//    }
+
     onChange(event) {
         event.persist();
         this.setState((prevState)=>{

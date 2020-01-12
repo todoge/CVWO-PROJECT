@@ -27,58 +27,22 @@ onSubmit(event){
     const { username, email, password } = this.state;
     const token = document.querySelector('meta[name="csrf-token"]').content;
     axios.post(url,{
-        headers: {
-        "X-CSRF-Token": token,
-        "Content-Type": "application/json"
-      },
         user: {
             email: email,
             username: username,
             password: password
         }
     },
-        {with_credentials: true}
+        {with_credentials: true,headers: 
+        {
+          "X-CSRF-Token": token,
+          "Content-Type": "application/json"
+        }}
     )
     .then(response => this.props.history.push(`/todos`))
     .catch(error => console.log(error.message));
 }
-
-//  onSubmit(event) {
-//    event.preventDefault();
-//    const url = "/signup";
-//    const { username, email, password } = this.state;
-//
-//    if (username.length === 0 || email.length === 0)
-//      return;
-//
-//    const user = {
-//      username: username,
-//      email: email,
-//      password: password
-//    };
-//
-//    const token = document.querySelector('meta[name="csrf-token"]').content;
-//    fetch(url, {
-//      credentials: "include",
-//      method: "POST",
-//      headers: {
-//        "X-CSRF-Token": token,
-//        "Content-Type": "application/json"
-//      },
-//      body: JSON.stringify(user)
-//    })
-//      .then(response => {
-//        if (response.ok) {
-//          return response.json();
-//        }
-//        throw new Error("Network response was not ok.");
-//      })
-//      .then(response => this.props.history.push(`/todos`))
-//      .catch(error => console.log(error.message));
-//  }
-
-
-  
+ 
     render(){
         return(
             <UserForm onChange={this.onChange} onSubmit={this.onSubmit} 

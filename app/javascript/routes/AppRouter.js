@@ -7,6 +7,7 @@ import New from "../components/New"
 import Edit from "../components/Edit"
 import ErrorRoute from "../components/404"
 import Show from "../components/Show"
+import Signup from "../components/Signup"
 
 const Routes = ()=>(
     <BrowserRouter>
@@ -17,6 +18,7 @@ const Routes = ()=>(
             <Route component={New} exact path="/todos/new" />
             <Route component={Edit} exact path="/todos/:id/edit" />
             <Route component={Show} exact path="/todos/:id" />
+            <Route component={Signup} exact path="/signup" />
             <Route component={ErrorRoute}/>
         </Switch>
     </BrowserRouter>

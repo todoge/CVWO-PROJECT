@@ -8,6 +8,9 @@ Rails.application.routes.draw do
       delete 'todos/:id', to: 'todos#destroy'
     end
   end
+  
+  post '/signup', to:"users#create"
+  
   root 'homepage#index'
   get '/*path' => 'homepage#index'
 end

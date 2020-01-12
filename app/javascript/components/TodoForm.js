@@ -1,3 +1,5 @@
+// This is the skeleton component for the Todo form
+
 import React from "react"
 import {Link} from "react-router-dom"
 
@@ -12,7 +14,7 @@ const TodoForm = (props)=>{
             
             <form onSubmit={props.onSubmit}>
               <div className="form-group">
-                <label htmlFor="recipeName">Title</label>
+                <label htmlFor="title">Title</label>
                 <input
                   type="text"
                   name="title"
@@ -23,7 +25,7 @@ const TodoForm = (props)=>{
                 />
               </div>
               
-              <label htmlFor="instruction">Description</label>
+              <label htmlFor="description">Description</label>
               <textarea
                 className="form-control"
                 value={props.description || ""}

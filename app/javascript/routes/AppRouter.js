@@ -8,6 +8,7 @@ import EditTodo from "../components/EditTodo"
 import ErrorRoute from "../components/404"
 import ShowTodo from "../components/ShowTodo"
 import Signup from "../components/Signup"
+import UserProfile from "../components/ShowUser"
 
 const Routes = ()=>(
     <BrowserRouter>
@@ -19,6 +20,7 @@ const Routes = ()=>(
             <Route component={EditTodo} exact path="/todos/:id/edit" />
             <Route component={ShowTodo} exact path="/todos/:id" />
             <Route component={Signup} exact path="/signup" />
+            <Route component={UserProfile} exact path="/users/:id" />
             <Route component={ErrorRoute}/>
         </Switch>
     </BrowserRouter>

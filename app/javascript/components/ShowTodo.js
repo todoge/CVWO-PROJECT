@@ -1,5 +1,4 @@
 // This component shows the Entire Todo Post
-
 import React from "react";
 import { Link } from "react-router-dom";
 import Moment from "react-moment"
@@ -8,8 +7,6 @@ class ShowTodo extends React.Component {
   constructor(props) {
     super(props);
     this.state = { todo:[] };
-
-    this.addHtmlEntities = this.addHtmlEntities.bind(this);
   }
 
   componentDidMount() {
@@ -30,12 +27,6 @@ class ShowTodo extends React.Component {
       })
       .then(response => this.setState({ todo: response }))
       .catch(() => this.props.history.push("/todos/error"));
-  }
-
-  addHtmlEntities(str) {
-    return String(str)
-      .replace(/&lt;/g, "<")
-      .replace(/&gt;/g, ">");
   }
 
   render() {

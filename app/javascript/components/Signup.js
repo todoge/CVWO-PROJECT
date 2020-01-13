@@ -23,7 +23,7 @@ class Signup extends React.Component{
 
 onSubmit(event){
     event.preventDefault();
-    const url = "/signup";
+    const url = `/api/v1/users/create`;
     const { username, email, password } = this.state;
     const token = document.querySelector('meta[name="csrf-token"]').content;
     axios.post(url,{

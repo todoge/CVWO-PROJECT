@@ -2,6 +2,7 @@
 import React from "react"
 import axios from "axios"
 import Profile from "../components/Profile"
+
 class ShowUser extends React.Component{
     constructor(props) {
        super(props);

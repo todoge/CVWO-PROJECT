@@ -13,6 +13,7 @@ Rails.application.routes.draw do
       #User controller
       get '/users/show/:id', to:"users#show"
       post '/users/create', to:"users#create"
+      put '/users/:id/update', to:"users#update"
     end
   end
   

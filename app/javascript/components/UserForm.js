@@ -18,26 +18,27 @@ const UserForm = (props)=>(
                   id="user-username"
                   name="username"
                   className="form-control"
+                  value={props.username || ""}
                   required
                   onChange={props.onChange}
                 />
               
-                <label htmlFor="user-password">Password</label>
-                <input
-                  type="text"
-                  id="user-password"
-                  name="password"
-                  value={props.password}
-                  className="form-control"
-                  required
-                  onChange={props.onChange}
-                />
-                  
                 <label htmlFor="user-email">Email</label>
                 <input
                   type="text"
                   id="user-email"
                   name="email"
+                  value={props.email || ""}
+                  className="form-control"
+                  required
+                  onChange={props.onChange}
+                />
+                
+                <label htmlFor="user-password">Password</label>
+                <input
+                  type="text"
+                  id="user-password"
+                  name="password"
                   className="form-control"
                   required
                   onChange={props.onChange}

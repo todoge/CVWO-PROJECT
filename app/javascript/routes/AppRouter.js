@@ -9,6 +9,7 @@ import ErrorRoute from "../components/404"
 import ShowTodo from "../components/ShowTodo"
 import Signup from "../components/Signup"
 import UserProfile from "../components/ShowUser"
+import UpdateUser from "../components/EditUser"
 
 const Routes = ()=>(
     <BrowserRouter>
@@ -21,6 +22,7 @@ const Routes = ()=>(
             <Route component={ShowTodo} exact path="/todos/:id" />
             <Route component={Signup} exact path="/signup" />
             <Route component={UserProfile} exact path="/users/:id" />
+            <Route component={UpdateUser} exact path="/users/:id/edit" />
             <Route component={ErrorRoute}/>
         </Switch>
     </BrowserRouter>

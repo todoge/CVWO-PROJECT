@@ -17,6 +17,11 @@ Rails.application.routes.draw do
     end
   end
   
+  #session routes
+  post '/login', to: 'sessions#create'
+  delete '/logout', to: 'sessions#destroy'
+  get '/logged_in', to: 'sessions#is_logged_in?'
+  
   #Catch all route so that routing is done by React-Router
   match '*path', to: 'homepage#index', via: :all
 end

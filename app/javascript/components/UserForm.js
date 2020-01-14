@@ -10,29 +10,34 @@ const UserForm = (props)=>(
             </h1>
             
             <form onSubmit={props.onSubmit}>
+            
               <div className="form-group">
+                {props.username &&
+                <div>
+                    <label htmlFor="user-username">Username</label>
+                    <input
+                      type="text"
+                      id="user-username"
+                      name="username"
+                      className="form-control"
+                      value={props.username || ""}
+                      required
+                      onChange={props.onChange}
+                    />
+                </div>
+                }
               
-                <label htmlFor="user-username">Username</label>
-                <input
-                  type="text"
-                  id="user-username"
-                  name="username"
-                  className="form-control"
-                  value={props.username || ""}
-                  required
-                  onChange={props.onChange}
-                />
-              
-                <label htmlFor="user-email">Email</label>
-                <input
-                  type="text"
-                  id="user-email"
-                  name="email"
-                  value={props.email || ""}
-                  className="form-control"
-                  required
-                  onChange={props.onChange}
-                />
+                
+                    <label htmlFor="user-email">Email</label>
+                    <input
+                      type="text"
+                      id="user-email"
+                      name="email"
+                      value={props.email || ""}
+                      className="form-control"
+                      required
+                      onChange={props.onChange}
+                    />
                 
                 <label htmlFor="user-password">Password</label>
                 <input
@@ -60,3 +65,5 @@ const UserForm = (props)=>(
 )
 
 export default UserForm
+
+

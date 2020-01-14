@@ -14,7 +14,16 @@ class Api::V1::UsersController < ApplicationController
   
   def show
     @user = User.find(params[:id])
-    render json: @user
+    @user_info = {
+      username:@user.username,
+      password:@user.password,
+      email:@user.email,
+      id:@user.id,
+      todos:@user.todos,
+      created_at:@user.created_at,
+      updated_at:@user.updated_at,
+    }
+    render json: @user_info
   end
   
   def update

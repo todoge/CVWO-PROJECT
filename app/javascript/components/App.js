@@ -1,7 +1,7 @@
 import React from "react"
 import "../../assets/stylesheets/todo.scss"
 import TodoItem from "../components/IndividualTodo"
-import {Link} from "react-router-dom"
+import TodoList from "../components/TodoList"
 
 class App extends React.Component {
   constructor(props) {
@@ -47,27 +47,14 @@ class App extends React.Component {
       .catch(error => console.log(error.message));
   }
   
-  render(){
-      const {Todos} = this.state;
-      return(
-            <div className="container-fluid">
-                <div className="row justify-content-md-center">
-                    <div className="col-3">
-                        
-                    </div>
-                    <div className="col-6">
-                        <div className="text-white mb-3">
-                        <div className="card-header bg-purple" id="title-font">All the things to do....</div>
-                            {Todos.map((item)=>(<TodoItem key={item.id} todo={item} Delete={this.DeleteTodoHandler}/>))}
-                        </div>
-                    </div>
-                    <div className="col-3">
-                    <Link to="/todos/new" className="btn my-large-btn">New Todo</Link>
-                    </div>
-                </div>
-            </div>
-        )
-  }
+    render(){
+        const {Todos} = this.state;
+            return(
+                    <TodoList title="All the things to do...." 
+                    list={Todos.map((item)=>(<TodoItem key={item.id} 
+                    todo={item} Delete={this.DeleteTodoHandler}/>))}/>
+            )
+    }
   
 }
 

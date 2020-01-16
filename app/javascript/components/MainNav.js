@@ -1,13 +1,27 @@
 import React, {Component} from 'react';
 import {Link} from "react-router-dom"
+import axios from "axios"
 import { Navbar, NavItem, NavDropdown, MenuItem, Nav } from 'react-bootstrap';
 import "../../assets/stylesheets/todo.scss"
 
-class MainNav extends Component {
-    render(){
+const MainNav = (props)=>{
+       
+        const handleClick = () => {
+            const token = document.querySelector('meta[name="csrf-token"]').content;
+            axios.delete('/api/v1/logout', {withCredentials: true,
+            headers: 
+                {
+                  "X-CSRF-Token": token,
+                  "Content-Type": "application/json"
+                }})
+            .then(response => {props.handleLogout();props.history.push('/todos');})
+            .catch(error => console.log(error))
+        }
+          
         return (
             <section className="mb-3">
                 <Navbar className="navbar-dark" id="main-navbar" expand="md">
+                
                 <Navbar.Brand href="/todos">Gérer</Navbar.Brand>
                 <Navbar.Toggle aria-controls="basic-navbar-nav" />
                 <Navbar.Collapse id="basic-navbar-nav">
@@ -22,10 +36,19 @@ class MainNav extends Component {
                     </NavDropdown>
                   </Nav>
                 </Navbar.Collapse>
+                
+                <div className="my-2 my-lg-0">
+                    <Link to='/login' className="btn btn-md btn-primary mr-3">Log In</Link>
+                    <Link to='/signup' className="btn btn-md btn-success mr-3">Sign Up</Link>
+                </div>
+                { 
+                    props.loggedInStatus && 
+                    <Link to='/logout' className="btn btn-md btn-warning" onClick={handleClick}>Log Out</Link>
+                }
               </Navbar>
             </section>
         )
-    }
+
 };
 
 export default MainNav

@@ -12,7 +12,7 @@ const UserForm = (props)=>(
             <form onSubmit={props.onSubmit}>
             
               <div className="form-group">
-                {props.username &&
+                {!props.is_login &&
                 <div>
                     <label htmlFor="user-username">Username</label>
                     <input

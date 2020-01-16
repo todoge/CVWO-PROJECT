@@ -1,5 +1,6 @@
 import React from "react"
 import TodoForm from "../components/TodoForm"
+import axios from "axios"
 
 class NewTodo extends React.Component {
   constructor(props) {
@@ -7,19 +8,22 @@ class NewTodo extends React.Component {
     this.state = {
       title: "",
       description: "",
+      user_id: "",
     };
 
     this.onChange = this.onChange.bind(this);
     this.onSubmit = this.onSubmit.bind(this);
-    this.stripHtmlEntities = this.stripHtmlEntities.bind(this);
   }
-
-  stripHtmlEntities(str) {
-    return String(str)
-      .replace(/</g, "&lt;")
-      .replace(/>/g, "&gt;");
-  }
-
+  
+    componentDidMount() {
+        if (this.props.loggedInStatus === false){
+            this.props.history.push(`/login`);
+        }
+        this.setState({
+            user_id: this.props.user.id
+        })
+    }
+  
   onChange(event) {
     this.setState({ [event.target.name]: event.target.value });
   }
@@ -27,33 +31,26 @@ class NewTodo extends React.Component {
   onSubmit(event) {
     event.preventDefault();
     const url = "/api/v1/todos/create";
-    const { title, description} = this.state;
+    const { title, description, user_id} = this.state;
 
     if (title.length === 0 || description.length === 0)
       return;
 
-    const body = {
+    const todo = {
       title,
       description,
+      user_id
     };
 
-    const token = document.querySelector('meta[name="csrf-token"]').content;
-    fetch(url, {
-      method: "POST",
-      headers: {
-        "X-CSRF-Token": token,
-        "Content-Type": "application/json"
-      },
-      body: JSON.stringify(body)
-    })
-      .then(response => {
-        if (response.ok) {
-          return response.json();
-        }
-        throw new Error("Network response was not ok.");
-      })
-      .then(response => this.props.history.push(`/todos`))
-      .catch(error => console.log(error.message));
+    const token = document.querySelector('meta[name="csrf-token"]').content;  
+    axios.post(url, {todo}, {withCredentials: true,
+    headers: 
+    {
+      "X-CSRF-Token": token,
+      "Content-Type": "application/json"
+    }})
+   .then(response => this.props.history.push(`/todos`))
+   .catch(error => console.log(error.message));
   }
 
   render() {

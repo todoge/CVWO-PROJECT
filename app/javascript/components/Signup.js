@@ -9,39 +9,66 @@ class Signup extends React.Component{
     this.state = {
       username: "",
       email: "",
-      password: ""
+      password: "",
+      errors:""
     };
 
     this.onChange = this.onChange.bind(this);
     this.onSubmit = this.onSubmit.bind(this);
-  }
+    }
   
-  onChange(event) {
-    this.setState({ [event.target.name]: event.target.value });
-  }
+    onChange(event) {
+      this.setState({ [event.target.name]: event.target.value });
+    }
 
-onSubmit(event){
-    event.preventDefault();
-    const url = `/api/v1/users/create`;
-    const { username, email, password } = this.state;
-    const token = document.querySelector('meta[name="csrf-token"]').content;
-    axios.post(url,{
-        user: {
-            email: email,
-            username: username,
-            password: password
-        }
-    },
-        {with_credentials: true,headers: 
-        {
-          "X-CSRF-Token": token,
-          "Content-Type": "application/json"
-        }}
-    )
-    .then(response => this.props.history.push(`/todos`))
-    .catch(error => console.log(error.message));
-}
- 
+    onSubmit(event){
+        event.preventDefault();
+        const url = `/api/v1/users/create`;
+        const { username, email, password } = this.state;
+        const token = document.querySelector('meta[name="csrf-token"]').content;
+        axios.post(url,{
+            user: {
+                email: email,
+                username: username,
+                password: password
+            }
+        },
+            {with_credentials: true,headers: 
+            {
+              "X-CSRF-Token": token,
+              "Content-Type": "application/json"
+            }}
+        )
+        .then(response => {
+            console.log(response.data.status)
+          if (response.data.status === 'created') {
+            this.props.handleLogin(response.data)
+            this.redirect();
+          } else {
+            this.setState({
+              errors: response.data.errors
+            })
+          }
+        })
+        .catch(error => console.log('api errors:', error))
+    };
+    
+    redirect = () => {
+        this.props.history.push('/todos');
+    }
+    
+    handleErrors = () => {
+        return (
+          <div>
+            <ul>
+            {this.state.errors.map((error) => {
+              return <li key={error}>{error}</li>
+            })}
+            </ul> 
+          </div>
+        )
+    }
+
     render(){
         return(
             <UserForm onChange={this.onChange} onSubmit={this.onSubmit} 

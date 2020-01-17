@@ -62,7 +62,7 @@ class App extends React.Component {
                     <Route exact path='/todos/new' render={props => (<NewTodo {...props} loggedInStatus={this.state.isLoggedIn} user={user}/>)} />
                     <Route component={EditTodo} exact path="/todos/:id/edit" />
                     <Route component={ShowTodo} exact path="/todos/:id" />
-                    <Route component={Signup} exact path="/signup" />
+                    <Route exact path = "/signup" render = {props => (<Signup {...props} handleLogin={this.handleLogin} /> )}/>
                     <Route component={UserProfile} exact path="/users/:id" />
                     <Route component={UpdateUser} exact path="/users/:id/edit" />
                     <Route component={AboutMe} exact path="/about" />

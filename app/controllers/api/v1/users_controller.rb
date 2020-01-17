@@ -5,10 +5,17 @@ class Api::V1::UsersController < ApplicationController
   end
   def create
     @user = User.new(user_params)
+    login!
      if @user.save
-      render json: @user
+      render json: {
+        user: @user,
+        status: :created
+      }
      else
-       print @user.errors.full_messages
+        render json: {
+           errors: @user.errors.full_messages,
+           status: 500
+        }
      end
   end
   

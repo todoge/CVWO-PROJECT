@@ -38,13 +38,17 @@ const MainNav = (props)=>{
                 </Navbar.Collapse>
                 
                 <div className="my-2 my-lg-0">
-                    <Link to='/login' className="btn btn-md btn-primary mr-3">Log In</Link>
-                    <Link to='/signup' className="btn btn-md btn-success mr-3">Sign Up</Link>
-                </div>
+                { !props.loggedInStatus &&
+                    <div>
+                        <Link to='/login' className="btn btn-md btn-primary mr-3">Log In</Link>
+                        <Link to='/signup' className="btn btn-md btn-success mr-3">Sign Up</Link>
+                    </div>
+                }
                 { 
                     props.loggedInStatus && 
                     <Link to='/logout' className="btn btn-md btn-warning" onClick={handleClick}>Log Out</Link>
                 }
+                </div>
               </Navbar>
             </section>
         )

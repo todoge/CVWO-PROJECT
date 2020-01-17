@@ -11,6 +11,7 @@ import Signup from "../components/Signup"
 import UserProfile from "../components/ShowUser"
 import UpdateUser from "../components/EditUser"
 import Login from "../components/Login"
+import AboutMe from "../components/AboutMe"
 import axios from "axios"
 
 class App extends React.Component {
@@ -64,6 +65,7 @@ class App extends React.Component {
                     <Route component={Signup} exact path="/signup" />
                     <Route component={UserProfile} exact path="/users/:id" />
                     <Route component={UpdateUser} exact path="/users/:id/edit" />
+                    <Route component={AboutMe} exact path="/about" />
                     <Route exact path='/login' render={props => (<Login {...props} handleLogin={this.handleLogin} loggedInStatus={isLoggedIn}/>)} />
                     <Route component={ErrorRoute}/>
                 </Switch>

@@ -2,6 +2,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import Moment from "react-moment"
+import 'moment-timezone'
 
 class ShowTodo extends React.Component {
   constructor(props) {
@@ -50,7 +51,7 @@ class ShowTodo extends React.Component {
                                         <Link to={"/todos/" + this.state.todo.id + "/edit"}>Edit Me</Link>
                                     </div>
                                     <span>
-                                        <p>Updated <Moment parse="YYYY-MM-DD HH:mm" fromNow>{this.state.todo.updated_at}</Moment></p>
+                                        <p>Updated <Moment fromNow>{this.state.todo.updated_at}</Moment></p>
                                         <p>Created on<Moment parse="YYYY-MM-DD HH:mm" >{this.state.todo.created_at}</Moment></p>
                                     </span>
                                 </div>

@@ -8,7 +8,6 @@ Bundler.require(*Rails.groups)
 
 module CVWOProject
   class Application < Rails::Application
-    config.time_zone = 'Singapore'
     config.active_record.default_timezone = :local
     # Initialize configuration defaults for originally generated Rails version.
     config.load_defaults 6.0

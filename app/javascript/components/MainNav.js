@@ -32,7 +32,7 @@ const MainNav = (props)=>{
                       <NavDropdown.Item href="https://infinite-river-35557.herokuapp.com/">YelpCamp</NavDropdown.Item>
                       <NavDropdown.Item href="https://young-bastion-76363.herokuapp.com/">NASA API</NavDropdown.Item>
                       <NavDropdown.Divider />
-                      <NavDropdown.Item href="https://www.comp.nus.edu.sg/~vwo/">CVWO</NavDropdown.Item>
+                      <NavDropdown.Item href="https://www.comp.nus.edu.sg/~vwo/">About CVWO</NavDropdown.Item>
                     </NavDropdown>
                   </Nav>
                 </Navbar.Collapse>

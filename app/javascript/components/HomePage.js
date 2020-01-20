@@ -3,6 +3,7 @@ import "../../assets/stylesheets/todo.scss"
 import TodoItem from "../components/IndividualTodo"
 import TodoList from "../components/TodoList"
 import axios from "axios"
+import {Link} from "react-router-dom"
 class Home extends React.Component {
   constructor(props) {
     super(props);
@@ -41,10 +42,22 @@ class Home extends React.Component {
     render(){
         const {Todos} = this.state;
         return(
-            <TodoList title="All the things to do...." 
-                list={Todos.map((item)=>(<TodoItem key={item.id} 
-                todo={item} />))}
-            />
+            <div className="container-fluid">
+                <div className="row justify-content-md-center">
+                    <div className="col-2">
+                    
+                    </div>
+                    <div className="col-8">
+                        <TodoList title="All the things to do...." 
+                            list={Todos.map((item)=>(<TodoItem key={item.id} 
+                            todo={item} />))}
+                        />
+                    </div>
+                    <div className="col-2">
+                    <Link to="/todos/new" className="btn my-large-btn">New Todo</Link>
+                    </div>
+                </div>
+            </div>
         );
     }
   

@@ -10,7 +10,7 @@ const Profile = (props)=>(
         <span className="card-header">Profile Page</span>
             <div className="card-body">
                 <div className="d-flex justify-content-center">
-                    <div>
+                    <div className="text-center">
                     <Gravatar email={props.user.email} size={150} />
                     <h5 className="card-title">{props.user.username}</h5>
                     <p className="card-text">{props.user.email}</p>

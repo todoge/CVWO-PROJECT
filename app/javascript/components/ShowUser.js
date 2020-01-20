@@ -51,7 +51,7 @@ class ShowUser extends React.Component{
                         <h1 className="mt-5 mb-3 text-center">View All {user.username}'s Posts</h1>
                             <div className="container">
                                 <div className="text-white">
-                                    <TodoList title="All the things to do...." 
+                                    <TodoList title= {"All the things " + user.username + " is doing...."} 
                                     list={user.todos.map((item)=>(<TodoItem key={item.id} 
                                     todo={item} delete={ authenticated ? this.DeleteTodoHandler : null}/>))}
                                     />

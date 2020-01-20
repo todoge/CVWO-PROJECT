@@ -31,7 +31,7 @@ class App extends React.Component {
         axios.get('/api/v1/logged_in', {withCredentials: true})
         .then(response => {
           if (response.data.logged_in) {
-            this.handleLogin(response)
+              this.handleLogin();
           } else {
             this.handleLogout()
           }
@@ -54,7 +54,7 @@ class App extends React.Component {
         const {user, isLoggedIn} = this.state;
         return(
             <BrowserRouter>
-                <Route render={props => (<Nav {...props} handleLogout={this.handleLogout} loggedInStatus={isLoggedIn}/>)} />
+                <Route render={props => (<Nav {...props} user={user} handleLogout={this.handleLogout} loggedInStatus={isLoggedIn}/>)} />
                 <Switch>
                 
                     <Route component={Welcome} exact path="/" />
@@ -63,9 +63,9 @@ class App extends React.Component {
                     <Route component={EditTodo} exact path="/todos/:id/edit" />
                     <Route component={ShowTodo} exact path="/todos/:id" />
                     <Route exact path = "/signup" render = {props => (<Signup {...props} handleLogin={this.handleLogin} /> )}/>
-                    <Route component={UserProfile} exact path="/users/:id" />
                     <Route component={UpdateUser} exact path="/users/:id/edit" />
                     <Route component={AboutMe} exact path="/about" />
+                    <Route exact path='/users/:id' render={props => (<UserProfile {...props} user={user} loggedInStatus={isLoggedIn}/>)} />
                     <Route exact path='/login' render={props => (<Login {...props} handleLogin={this.handleLogin} loggedInStatus={isLoggedIn}/>)} />
                     <Route component={ErrorRoute}/>
                 </Switch>

@@ -20,7 +20,15 @@ def is_logged_in?
     if logged_in? && current_user
       render json: {
         logged_in: true,
-        user: current_user
+        user: {
+          username: current_user.username,
+          password: current_user.password,
+          email:  current_user.email,
+          id: current_user.id,
+          todos:  current_user.todos,
+          created_at: current_user.created_at,
+          updated_at: current_user.updated_at
+        }
       }
     else
       render json: {

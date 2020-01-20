@@ -46,7 +46,10 @@ const MainNav = (props)=>{
                 }
                 { 
                     props.loggedInStatus && 
-                    <Link to='/logout' className="btn btn-md btn-warning" onClick={handleClick}>Log Out</Link>
+                    <div>
+                        <Link to= "/users/${props.user.id}" className="text-white mr-3">{props.user ? props.user.username : "Profile"}</Link>
+                        <Link to='/logout' className="btn btn-sm btn-warning mr-3" onClick={handleClick}>Log Out</Link>
+                    </div>
                 }
                 </div>
               </Navbar>

@@ -21,7 +21,7 @@ const Aboutme = ()=>(
                 <p>Database on sqlite3 in development and postgreSQL in production on Heroku</p>
                 <p>Encryption with Bcrypt</p>
             </div>
-            <p class="font-italic">This framework is still relatively new to me so implementation might not be great.</p>
+            <p className="font-italic">This framework is still relatively new to me so implementation might not be great.</p>
             
         <Link className="btn btn-primary text-center" to="/todos">Back to Todos</Link>
     </div>

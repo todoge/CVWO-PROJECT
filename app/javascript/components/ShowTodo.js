@@ -48,11 +48,11 @@ class ShowTodo extends React.Component {
                                 
                                 <div className="d-flex justify-content-between">
                                     <div>
-                                        <Link to={"/todos/" + this.state.todo.id + "/edit"}>Edit Me</Link>
+                                        <Link to={"/todos/" + this.state.todo.id + "/edit"} className="btn btn-md">Edit Me</Link>
                                     </div>
                                     <span>
                                         <p>Updated <Moment fromNow>{this.state.todo.updated_at}</Moment></p>
-                                        <p>Created on<Moment parse="YYYY-MM-DD HH:mm" >{this.state.todo.created_at}</Moment></p>
+                                        <p>Created on <Moment format="YYYY/MM/DD">{this.state.todo.created_at}</Moment></p>
                                     </span>
                                 </div>
                 

@@ -7,7 +7,7 @@ import TodoItem from "../components/IndividualTodo"
 class ShowUser extends React.Component{
     constructor(props) {
        super(props);
-       this.state = { loaded :false, user_info:{} };
+       this.state = { loaded: false, user:{}, errors:""};
        this.DeleteTodoHandler = this.DeleteTodoHandler.bind(this);
      }
 
@@ -20,7 +20,7 @@ class ShowUser extends React.Component{
 
         const url = `/api/v1/users/show/${id}`;
         axios.get(url)
-            .then(response => this.setState({ user_info: response.data, loaded:true }))
+            .then(response => this.setState({ loaded: true, user: response.data }))
             .catch(() => this.props.history.push("/PAGENOTFOUND"));
     }
     
@@ -47,17 +47,24 @@ class ShowUser extends React.Component{
     }
     
     content(){
-            const TodoList = this.state.user_info.todos;
+        console.log(this.state.user)
+            const TodoList = this.state.user.todos;
                 return(
                     <React.Fragment>
-                        <Profile user={this.state.user_info} />
+                        <Profile user={this.state.user} />
+                        { this.props.isLoggedIn &&
+                        <div>
                         <h1 className="mt-5 mb-3 text-center">All My Posts</h1>
-                        <div className="container">
-                            <div className="text-white">
-                                {TodoList.map((item)=>(<TodoItem key={item.id} 
-                                         todo={item} Delete={this.DeleteTodoHandler}/>))}
+                            <div className="container">
+                                <div className="text-white">
+                                    
+                                        {TodoList.map((item)=>(<TodoItem key={item.id} 
+                                        todo={item} />))}
+                               
+                                </div>
                             </div>
                         </div>
+                        }
                     </React.Fragment>
         )
     }

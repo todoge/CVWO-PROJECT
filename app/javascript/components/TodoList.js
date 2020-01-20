@@ -1,5 +1,4 @@
 import React from "react"
-import {Link} from "react-router-dom"
 
 const TodoList = (props)=>(
     <div className="container">
@@ -8,5 +7,5 @@ const TodoList = (props)=>(
             {props.list}
         </div>
     </div>
-)
+);
 export default TodoList

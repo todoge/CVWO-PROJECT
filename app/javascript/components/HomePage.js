@@ -19,7 +19,8 @@ class Home extends React.Component {
     const url = "/api/v1/todos/index";
     try {
       let result = await axios.get(url, {
-        cancelToken: this.source.token
+        cancelToken: this.source.token,
+        withCredentials: true
       });
       return result.data;
     } catch (error) {

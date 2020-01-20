@@ -56,10 +56,10 @@ const TodoItem = (props)=>{
             <div className="d-flex justify-content-between">
                 <div>
                     <Link className="btn btn-sm btn-primary" to={"/todos/" + props.todo.id}>Show more</Link>
-                    {props.delete && <button className="btn btn-lg" onClick={props.delete}>Delete</button>}
+                    {props.delete && <button className="btn btn-md btn-warning " onClick={()=>props.delete(props.todo.id)}>Delete</button>}
                 </div>
                 <div className="text-white">
-                    <span>Created by <Link to={`users/${user.id}`} className="text-info">{user.username}</Link><span> </span> 
+                    <span>Created by <Link to={`/users/${user.id}`} className="text-info">{user.username}</Link><span> </span> 
                     <Moment fromNow>{props.todo.updated_at}</Moment></span>
                 </div>
             </div>

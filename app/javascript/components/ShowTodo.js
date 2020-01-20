@@ -1,8 +1,7 @@
 // This component shows the Entire Todo Post
 import React from "react";
-import { Link } from "react-router-dom";
-import Moment from "react-moment"
-import 'moment-timezone'
+import axios from "axios"
+import ExpandTodo from "../components/ExpandTodoTemplate"
 
 class ShowTodo extends React.Component {
   constructor(props) {
@@ -19,52 +18,20 @@ class ShowTodo extends React.Component {
 
     const url = `/api/v1/show/${id}`;
 
-    fetch(url)
-      .then(response => {
-        if (response.ok) {
-          return response.json();
-        }
-        throw new Error("Network response was not ok.");
-      })
-      .then(response => this.setState({ todo: response }))
+    axios.get(url,{withCredential:true})
+      .then(response => this.setState({ todo: response.data }))
       .catch(() => this.props.history.push("/todos/error"));
   }
 
   render() {
-    const { todo } = this.state;
-
-    return (
-        <div className="container-fluid">
-                <div className="row justify-content-md-center">
-                    <div className="col-3">
-                        
-                    </div>
-                    <div className="col-6">
-                        <div className="card ">
-                            <h5 className="card-header">Show Todo</h5>
-                            <div className="card-body">
-                                <h5 className="card-title">{this.state.todo.title}</h5>
-                                <p className="card-text">{this.state.todo.description}</p>
-                                
-                                <div className="d-flex justify-content-between">
-                                    <div>
-                                        <Link to={"/todos/" + this.state.todo.id + "/edit"} className="btn btn-md">Edit Me</Link>
-                                    </div>
-                                    <span>
-                                        <p>Updated <Moment fromNow>{this.state.todo.updated_at}</Moment></p>
-                                        <p>Created on <Moment format="YYYY/MM/DD">{this.state.todo.created_at}</Moment></p>
-                                    </span>
-                                </div>
-                
-                            </div>
-                        </div>
-                    </div>
-                    <div className="col-3">
-                        <Link to="/todos/new" className="btn btn-primary">New Todo</Link>
-                    </div>
-                </div>
-            </div>
-    );
+      const {todo} = this.state;
+      const {loggedInStatus, currentUser} = this.props;
+      const authenticated = loggedInStatus && (currentUser.id === todo.user_id);
+        return(
+                <React.Fragment>
+                    <ExpandTodo todo={todo} authenticated={authenticated} />
+                </React.Fragment>
+        )
   }
 
 }

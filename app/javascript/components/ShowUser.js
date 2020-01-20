@@ -41,23 +41,26 @@ class ShowUser extends React.Component{
     }
     
     content(){
+                const {user} = this.state;
+                const {loggedInStatus, currentUser} = this.props;
+                const authenticated = loggedInStatus && (currentUser.id === user.id);
                 return(
                     <React.Fragment>
-                        <Profile user={this.state.user} />
+                        <Profile user={user} authenticated={authenticated} />
                         <div>
-                        <h1 className="mt-5 mb-3 text-center">View All {this.state.user.username}'s Posts</h1>
+                        <h1 className="mt-5 mb-3 text-center">View All {user.username}'s Posts</h1>
                             <div className="container">
                                 <div className="text-white">
                                     <TodoList title="All the things to do...." 
-                                    list={this.state.user.todos.map((item)=>(<TodoItem key={item.id} 
-                                    todo={item} delete={this.props.isLoggedIn ? this.DeleteTodoHandler : null}/>))}
+                                    list={user.todos.map((item)=>(<TodoItem key={item.id} 
+                                    todo={item} delete={ authenticated ? this.DeleteTodoHandler : null}/>))}
                                     />
                                 </div>
                             </div>
                         </div>
                         
                     </React.Fragment>
-        )
+        );
     }
     
     render(){

@@ -18,7 +18,7 @@ const Profile = (props)=>(
                 </div>
                 <div className="d-flex justify-content-between">
                     <span>Joined since <Moment parse="YYYY-MM HH:mm" format="YYYY/MM" >{props.user.created_at}</Moment></span>
-                    <Link to= {"/users/" + props.user.id + "/edit"} className="btn-lg btn-primary">Edit</Link>
+                    {props.authenticated && <Link to= {"/users/" + props.user.id + "/edit"} className="btn-lg btn-primary">Edit</Link>}
                 </div>
             </div>
         </div>

@@ -14,9 +14,10 @@ const MainNav = (props)=>{
                   "X-CSRF-Token": token,
                   "Content-Type": "application/json"
                 }})
-            .then(response => {props.handleLogout();props.history.push('/todos');})
-            .catch(error => console.log(error))
-        }
+            .then(response => { props.handleLogout();
+                                props.history.push('/todos');})
+            .catch(error => console.log(error));
+        };
           
         return (
             <section className="mb-3">
@@ -27,12 +28,12 @@ const MainNav = (props)=>{
                 <Navbar.Collapse id="basic-navbar-nav">
                   <Nav className="mr-auto">
                     <Nav.Link as={Link} to="/about">About me</Nav.Link>
-                    <Nav.Link as={Link} to="https://github.com/todoge/CVWO-PROJECT">Github</Nav.Link>
+                    <Nav.Link href="https://github.com/todoge/CVWO-PROJECT">Github</Nav.Link>
                     <NavDropdown title="Other Projects" id="basic-nav-dropdown">
-                      <NavDropdown.Item as={Link} to="https://infinite-river-35557.herokuapp.com/">YelpCamp</NavDropdown.Item>
-                      <NavDropdown.Item as={Link} to="https://young-bastion-76363.herokuapp.com/">NASA API</NavDropdown.Item>
+                      <NavDropdown.Item href="https://infinite-river-35557.herokuapp.com/">YelpCamp</NavDropdown.Item>
+                      <NavDropdown.Item href="https://young-bastion-76363.herokuapp.com/">NASA API</NavDropdown.Item>
                       <NavDropdown.Divider />
-                      <NavDropdown.Item as={Link} to="https://www.comp.nus.edu.sg/~vwo/">About CVWO</NavDropdown.Item>
+                      <NavDropdown.Item href="https://www.comp.nus.edu.sg/~vwo/">About CVWO</NavDropdown.Item>
                     </NavDropdown>
                   </Nav>
                 </Navbar.Collapse>
@@ -54,7 +55,7 @@ const MainNav = (props)=>{
                 </div>
               </Navbar>
             </section>
-        )
+        );
 
 };
 

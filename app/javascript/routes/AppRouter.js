@@ -25,7 +25,7 @@ class App extends React.Component {
        this.handleLogin = this.handleLogin.bind(this);
     }
     componentDidMount() {
-        this.loginStatus()
+        this.loginStatus();
       }
       loginStatus = () => {
         axios.get('/api/v1/logged_in', {withCredentials: true})
@@ -33,22 +33,22 @@ class App extends React.Component {
           if (response.data.logged_in) {
               this.handleLogin();
           } else {
-            this.handleLogout()
+            this.handleLogout();
           }
         })
-        .catch(error => console.log('api errors:', error))
+        .catch(error => console.log('api errors:', error));
       }
     handleLogin(data){
         this.setState({
           isLoggedIn: true,
           user: data.user
-        })
+        });
     }
     handleLogout(){
         this.setState({
         isLoggedIn: false,
         user: {}
-        })
+        });
     }
     render(){
         const {user, isLoggedIn} = this.state;
@@ -61,16 +61,16 @@ class App extends React.Component {
                     <Route component={Home} exact path="/todos" />
                     <Route exact path='/todos/new' render={props => (<NewTodo {...props} loggedInStatus={this.state.isLoggedIn} user={user}/>)} />
                     <Route component={EditTodo} exact path="/todos/:id/edit" />
-                    <Route component={ShowTodo} exact path="/todos/:id" />
+                    <Route exact path='/todos/:id' render={props => (<ShowTodo {...props} loggedInStatus={this.state.isLoggedIn} currentUser={user}/>)} />
                     <Route exact path = "/signup" render = {props => (<Signup {...props} handleLogin={this.handleLogin} /> )}/>
                     <Route component={UpdateUser} exact path="/users/:id/edit" />
                     <Route component={AboutMe} exact path="/about" />
-                    <Route exact path='/users/:id' render={props => (<UserProfile {...props} user={user} loggedInStatus={isLoggedIn}/>)} />
+                    <Route exact path='/users/:id' render={props => (<UserProfile {...props} currentUser={user} loggedInStatus={isLoggedIn}/>)} />
                     <Route exact path='/login' render={props => (<Login {...props} handleLogin={this.handleLogin} loggedInStatus={isLoggedIn}/>)} />
                     <Route component={ErrorRoute}/>
                 </Switch>
             </BrowserRouter>
-    )}
+    );}
 }
 export default App
 

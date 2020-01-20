@@ -8,7 +8,7 @@ class NewTodo extends React.Component {
     this.state = {
       title: "",
       description: "",
-      user_id: "",
+      user_id: ""
     };
 
     this.onChange = this.onChange.bind(this);
@@ -21,7 +21,7 @@ class NewTodo extends React.Component {
         }
         this.setState({
             user_id: this.props.user.id
-        })
+        });
     }
   
   onChange(event) {
@@ -58,7 +58,7 @@ class NewTodo extends React.Component {
             <TodoForm onChange={this.onChange} onSubmit={this.onSubmit} 
                 formTitle="Create a new Todo" submitBtn="Create!" 
                 title={this.state.title} description={this.state.description}/>
-        )
+        );
   }
 
 }

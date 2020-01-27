@@ -34,7 +34,7 @@ class ShowTodo extends React.Component {
               "X-CSRF-Token": token,
               "Content-Type": "application/json"
             }})
-        .then(() => this.props.history.goBack())
+        .then((response) => this.props.history.push("/todos"))
         .catch(error => console.log(error.message));
     }
     

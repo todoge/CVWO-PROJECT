@@ -1,5 +1,6 @@
 import React from "react"
 import TodoForm from "../components/TodoForm"
+import axios from "axios"
 
 class EditTodo extends React.Component {
     constructor(props) {
@@ -15,15 +16,9 @@ class EditTodo extends React.Component {
         params: { id }
       }
     } = this.props;
-    const url = `/api/v1/show/${id}`;
-    fetch(url)
-      .then(response => {
-        if (response.ok) {
-          return response.json();
-        }
-        throw new Error("Network response was not ok.");
-      })
-      .then(response => this.setState({ todo: response }))
+    const url = `/api/v1/edit/${id}`;
+    axios.get(url)
+      .then(response => this.setState({ todo: response.data }))
       .catch(() => this.props.history.push("/todos/error"));
   }
 
@@ -38,38 +33,32 @@ class EditTodo extends React.Component {
             }}
         });
     }
+    
     onSubmit(event) {
-      event.preventDefault();
-      const _id = this.props.match.params.id;
-      const url = `/api/v1/${_id}/update`;
-      const { title, description } = this.state.todo;
-
-      if (this.state.todo.title.length === 0 || this.state.todo.description.length === 0)
-        return;
-
-      const body = {
-        title,
-        description
-      };
+    event.preventDefault();
+    const _id = this.props.match.params.id;
+    const url = `/api/v1/${_id}/update`;
+    const { title, description } = this.state.todo;
 
     const token = document.querySelector('meta[name="csrf-token"]').content;
-    fetch(url, {
-      method: "PUT",
-      headers: {
-        "X-CSRF-Token": token,
-        "Content-Type": "application/json"
-      },
-      body: JSON.stringify(body)
-    })
-      .then(response => {
-        if (response.ok) {
-          return response.json();
-        }
-        throw new Error("Network response was not ok.");
-      })
-      .then(response => this.props.history.push(`/todos/${_id}`))
-      .catch(error => console.log(error.message));
-  }
+      
+    axios.put(url,{
+    todo: {
+        ...this.state.todo,
+        title: title,
+        description: description
+    }
+    },
+        {with_credentials: true,
+        headers: 
+            {
+              "X-CSRF-Token": token,
+              "Content-Type": "application/json"
+            }}
+    )
+        .then(response => this.props.history.push(`/todos/${_id}`))
+        .catch(error => console.log(error.message));
+    }
 
 
   render() {

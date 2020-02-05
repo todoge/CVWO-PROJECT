@@ -4,6 +4,8 @@ import TodoItem from "../Todo/IndividualTodo"
 import TodoList from "../Todo/TodoList"
 import axios from "axios"
 import {Link} from "react-router-dom"
+import Flash from "../Messages/Flash"
+
 class Home extends React.Component {
   constructor(props) {
     super(props);
@@ -44,6 +46,7 @@ class Home extends React.Component {
         const {Todos} = this.state;
         return(
             <div className="container-fluid">
+                <Flash />
                 <div className="row justify-content-md-center">
                     <div className="col-2">
                     

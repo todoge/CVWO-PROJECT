@@ -18,7 +18,7 @@ class EditTodo extends React.Component {
     } = this.props;
     const url = `/api/v1/edit/${id}`;
     axios.get(url)
-      .then(response => console.log(response.data))
+      .then(response => this.setState({ todo: response.data }))
       .catch(() => this.props.history.push("/todos/error"));
   }
 

@@ -1,5 +1,5 @@
 class Api::V1::UsersController < ApplicationController
-  
+  before_action :set_user,only: [:show,:edit,:update]
   before_action :require_user, except: [:show]
   before_action :require_same_user, only: [:edit,:update]
   
@@ -24,7 +24,6 @@ class Api::V1::UsersController < ApplicationController
   end
   
   def show
-    @user = User.find(params[:id])
     @user_info = {
       username:@user.username,
       password:@user.password,
@@ -38,7 +37,6 @@ class Api::V1::UsersController < ApplicationController
   end
   
  def edit
-    @user = User.find(params[:id])
     @user_info = {
       username:@user.username,
       password:@user.password,
@@ -52,7 +50,6 @@ class Api::V1::UsersController < ApplicationController
   end
   
   def update
-    @user = User.find(params[:id])
     if @user.update(user_params)
         render json: @user
     else
@@ -61,14 +58,19 @@ class Api::V1::UsersController < ApplicationController
   end
   
   private
+  
+  def set_user
+    @user = User.find(params[:id])
+  end
+  
   def user_params
     params.require(:user).permit(:username, :password, :email)
   end
   
   def require_same_user
-    if !authorized_user?
+    if current_user != @user
       render json: {
-        errors: ["You do not have permission to do that!"]
+        error:"You are not authorized!"
       }
     end
   end

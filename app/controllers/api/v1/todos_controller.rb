@@ -1,5 +1,5 @@
 class Api::V1::TodosController < ApplicationController
-  
+  before_action :set_todo, only: [:destroy, :update, :edit, :show]
   before_action :require_user, except: [:index, :show]
   before_action :require_same_user, only: [:edit, :update, :destroy]
   def new
@@ -25,17 +25,14 @@ class Api::V1::TodosController < ApplicationController
   end
   
   def show
-    @todo = Todo.find(params[:id])
     render json: @todo
   end
   
   def edit
-    @todo = Todo.find(params[:id])
     render json: @todo
   end
   
   def update
-    @todo = Todo.find(params[:id])
     if @todo.update(todo_params)
       render json: {
         todo: @todo,
@@ -55,18 +52,22 @@ class Api::V1::TodosController < ApplicationController
   end
   
   def destroy
-    @todo = Todo.find(params[:id])
     @todo.destroy
     render json: @todo
   end
   
   private
+  
+  def set_todo
+    @todo = Todo.find(params[:id])
+  end
+  
   def todo_params
     params.require(:todo).permit(:title, :description, :user_id)
   end
   
   def require_same_user
-    if !authorized_user?
+    if current_user != @todo.user
       render json: {
         errors: ["You do not have permission to do that!"]
       }

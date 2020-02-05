@@ -1,19 +1,31 @@
+// Dependencies
 import {Route, BrowserRouter, Switch, Link, NavLink} from 'react-router-dom'
 import React from 'react'
+import axios from "axios"
+// redux
+import {Provider} from "react-redux"
+import configureStore from "../components/Store/ConfigureStore"
+
+// pages 
 import Nav from "../components/Navbar/MainNav"
 import Welcome from "../components/Pages/Welcome"
+import ErrorRoute from "../components/Errors/ErrorRoute"
+import AboutMe from "../components/Pages/AboutMe"
+
+// Todos
 import Home from "../components/Todo/HomePage"
 import NewTodo from "../components/Todo/NewTodo"
 import EditTodo from "../components/Todo/EditTodo"
-import ErrorRoute from "../components/Errors/ErrorRoute"
 import ShowTodo from "../components/Todo/ShowTodo"
+
+// Users
 import Signup from "../components/Users/Signup"
 import UserProfile from "../components/Users/ShowUser"
 import UpdateUser from "../components/Users/EditUser"
 import Login from "../components/Users/Login"
-import AboutMe from "../components/Pages/AboutMe"
-import axios from "axios"
 
+const store = configureStore();
+console.log(store.getState());
 class App extends React.Component {
     constructor(props) {
     super(props);
@@ -54,25 +66,26 @@ class App extends React.Component {
     render(){
         const {user, isLoggedIn} = this.state;
         return(
-            <BrowserRouter>
-                <Route render={props => (<Nav {...props} user={user} handleLogout={this.handleLogout} loggedInStatus={isLoggedIn}/>)} />
-                <Switch>
-                
-                    <Route component={Welcome} exact path="/" />
-                    <Route component={Home} exact path="/todos" />
-                    <Route exact path='/todos/new' render={props => (<NewTodo {...props} loggedInStatus={this.state.isLoggedIn} user={user}/>)} />
-                    <Route component={EditTodo} exact path="/todos/:id/edit" />
-                    <Route exact path='/todos/:id' render={props => (<ShowTodo {...props} loggedInStatus={this.state.isLoggedIn} currentUser={user}/>)} />
-                    <Route exact path = "/signup" render = {props => (<Signup {...props} handleLogin={this.handleLogin} /> )}/>
-                    <Route component={UpdateUser} exact path="/users/:id/edit" />
-                    <Route component={AboutMe} exact path="/about" />
-                    <Route exact path='/users/:id' render={props => (<UserProfile {...props} currentUser={user} loggedInStatus={isLoggedIn} DeleteTodoHandler={this.DeleteTodoHandler}/>)} />
-                    <Route exact path='/login' render={props => (<Login {...props} handleLogin={this.handleLogin} loggedInStatus={isLoggedIn}/>)} />
-                    <Route render={props => (<ErrorRoute {...props} status="404" />)}/>
-                </Switch>
-            </BrowserRouter>
+            <Provider store={store}>
+                <BrowserRouter>
+                    <Route render={props => (<Nav {...props} user={user} handleLogout={this.handleLogout} loggedInStatus={isLoggedIn}/>)} />
+                    <Switch>
+                        <Route component={Welcome} exact path="/" />
+                        <Route component={Home} exact path="/todos" />
+                        <Route exact path='/todos/new' render={props => (<NewTodo {...props} loggedInStatus={this.state.isLoggedIn} user={user}/>)} />
+                        <Route component={EditTodo} exact path="/todos/:id/edit" />
+                        <Route exact path='/todos/:id' render={props => (<ShowTodo {...props} loggedInStatus={this.state.isLoggedIn} currentUser={user}/>)} />
+                        <Route exact path = "/signup" render = {props => (<Signup {...props} handleLogin={this.handleLogin} /> )}/>
+                        <Route component={UpdateUser} exact path="/users/:id/edit" />
+                        <Route component={AboutMe} exact path="/about" />
+                        <Route exact path='/users/:id' render={props => (<UserProfile {...props} currentUser={user} loggedInStatus={isLoggedIn} DeleteTodoHandler={this.DeleteTodoHandler}/>)} />
+                        <Route exact path='/login' render={props => (<Login {...props} handleLogin={this.handleLogin} loggedInStatus={isLoggedIn}/>)} />
+                        <Route render={props => (<ErrorRoute {...props} status="404" />)}/>
+                    </Switch>
+                </BrowserRouter>
+            </Provider>
     );}
 }
-export default App
+export default App;
 
 

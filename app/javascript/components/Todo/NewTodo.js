@@ -1,5 +1,5 @@
 import React from "react"
-import TodoForm from "../components/TodoForm"
+import TodoForm from "../Todo/TodoForm"
 import axios from "axios"
 
 class NewTodo extends React.Component {
@@ -8,7 +8,9 @@ class NewTodo extends React.Component {
     this.state = {
       title: "",
       description: "",
-      user_id: ""
+      user_id: "",
+      errors:[],
+      flash_msg:[]
     };
 
     this.onChange = this.onChange.bind(this);
@@ -33,9 +35,6 @@ class NewTodo extends React.Component {
     const url = "/api/v1/todos/create";
     const { title, description, user_id} = this.state;
 
-    if (title.length === 0 || description.length === 0)
-      return;
-
     const todo = {
       title,
       description,
@@ -49,15 +48,32 @@ class NewTodo extends React.Component {
       "X-CSRF-Token": token,
       "Content-Type": "application/json"
     }})
-   .then(response => this.props.history.push(`/todos`))
-   .catch(error => console.log(error.message));
-  }
+    .then(response => this.props.history.push(`/todos`))
+    .catch(error => console.log(error.message));
+   }
 
+    handleErrors = () => {
+        return (
+                this.state.errors.length !== 0 && 
+                <div className="alert alert-danger mx-3" role="alert">
+                  <ul>
+                  {this.state.errors.map((error) => {
+                    return <li key={error}>{error}</li>
+                  })}
+                  </ul> 
+                </div>
+            )
+    }
+    
+    
   render() {
         return(
+            <React.Fragment>
+            {this.handleErrors()}
             <TodoForm onChange={this.onChange} onSubmit={this.onSubmit} 
                 formTitle="Create a new Todo" submitBtn="Create!" 
                 title={this.state.title} description={this.state.description}/>
+            </React.Fragment>
         );
   }
 

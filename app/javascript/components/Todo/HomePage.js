@@ -1,7 +1,7 @@
 import React from "react"
-import "../../assets/stylesheets/todo.scss"
-import TodoItem from "../components/IndividualTodo"
-import TodoList from "../components/TodoList"
+//import "../../../assets/stylesheets/todo.scss"
+import TodoItem from "../Todo/IndividualTodo"
+import TodoList from "../Todo/TodoList"
 import axios from "axios"
 import {Link} from "react-router-dom"
 class Home extends React.Component {

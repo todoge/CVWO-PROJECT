@@ -1,10 +1,10 @@
 import React from "react"
 import {Link} from "react-router-dom"
 
-const ErrorRoute = ()=>(
+const ErrorRoute = (props)=>(
         <React.Fragment>
-            <h1>404 Error</h1>
-            <Link to="/">Return Back Home</Link>
+            <h1>Error status: {props.status}</h1>
+            <Link to="/todos">Return Back to Todos</Link>
         </React.Fragment>
 )
 

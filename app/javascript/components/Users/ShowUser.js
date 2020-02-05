@@ -1,9 +1,9 @@
 //Show user profile
 import React from "react"
 import axios from "axios"
-import Profile from "../components/Profile"
-import TodoItem from "../components/IndividualTodo"
-import TodoList from "../components/TodoList"
+import Profile from "../Users/Profile"
+import TodoItem from "../Todo/IndividualTodo"
+import TodoList from "../Todo/TodoList"
 
 class ShowUser extends React.Component{
     constructor(props) {

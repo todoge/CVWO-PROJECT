@@ -1,7 +1,7 @@
 //Edit user profile
 import React from "react"
 import axios from "axios"
-import UserForm from "../components/UserForm"
+import UserForm from "../Users/UserForm"
 
 class EditUser extends React.Component{
     constructor(props) {
@@ -22,7 +22,7 @@ class EditUser extends React.Component{
           }
         } = this.props;
 
-        const url = `/api/v1/users/show/${id}`;
+        const url = `/api/v1/users/edit/${id}`;
         axios.get(url)
             .then(response => this.setState({ user: response.data }))
             .catch(() => this.props.history.push("/PAGENOTFOUND"));

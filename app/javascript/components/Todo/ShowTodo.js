@@ -1,7 +1,8 @@
 // This component shows the Entire Todo Post
 import React from "react";
 import axios from "axios"
-import ExpandTodo from "../components/ExpandTodoTemplate"
+import ExpandTodo from "../Todo/ExpandTodoTemplate"
+import {Link} from "react-router-dom"
 
 class ShowTodo extends React.Component {
     constructor(props) {
@@ -43,9 +44,19 @@ class ShowTodo extends React.Component {
       const {loggedInStatus, currentUser} = this.props;
       const authenticated = loggedInStatus && (currentUser.id === todo.user_id);
         return(
-                <React.Fragment>
-                    <ExpandTodo todo={todo} authenticated={authenticated} DeleteTodoHandler={this.DeleteTodoHandler}/>
-                </React.Fragment>
+                <div className="container-fluid">
+                <div className="row justify-content-md-center">
+                    <div className="col-2">
+                    
+                    </div>
+                    <div className="col-8">
+                        <ExpandTodo todo={todo} authenticated={authenticated} DeleteTodoHandler={this.DeleteTodoHandler}/>
+                    </div>
+                    <div className="col-2">
+                    <Link to="/todos" className="btn my-large-btn">Back to Todos</Link>
+                    </div>
+                </div>
+            </div>
         )
   }
 

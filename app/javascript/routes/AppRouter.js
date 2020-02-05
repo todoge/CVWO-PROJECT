@@ -1,17 +1,17 @@
 import {Route, BrowserRouter, Switch, Link, NavLink} from 'react-router-dom'
 import React from 'react'
-import Nav from "../components/MainNav"
-import Welcome from "../components/Welcome"
-import Home from "../components/HomePage"
-import NewTodo from "../components/NewTodo"
-import EditTodo from "../components/EditTodo"
-import ErrorRoute from "../components/404"
-import ShowTodo from "../components/ShowTodo"
-import Signup from "../components/Signup"
-import UserProfile from "../components/ShowUser"
-import UpdateUser from "../components/EditUser"
-import Login from "../components/Login"
-import AboutMe from "../components/AboutMe"
+import Nav from "../components/Navbar/MainNav"
+import Welcome from "../components/Pages/Welcome"
+import Home from "../components/Todo/HomePage"
+import NewTodo from "../components/Todo/NewTodo"
+import EditTodo from "../components/Todo/EditTodo"
+import ErrorRoute from "../components/Errors/ErrorRoute"
+import ShowTodo from "../components/Todo/ShowTodo"
+import Signup from "../components/Users/Signup"
+import UserProfile from "../components/Users/ShowUser"
+import UpdateUser from "../components/Users/EditUser"
+import Login from "../components/Users/Login"
+import AboutMe from "../components/Pages/AboutMe"
 import axios from "axios"
 
 class App extends React.Component {
@@ -68,7 +68,7 @@ class App extends React.Component {
                     <Route component={AboutMe} exact path="/about" />
                     <Route exact path='/users/:id' render={props => (<UserProfile {...props} currentUser={user} loggedInStatus={isLoggedIn} DeleteTodoHandler={this.DeleteTodoHandler}/>)} />
                     <Route exact path='/login' render={props => (<Login {...props} handleLogin={this.handleLogin} loggedInStatus={isLoggedIn}/>)} />
-                    <Route component={ErrorRoute}/>
+                    <Route render={props => (<ErrorRoute {...props} status="404" />)}/>
                 </Switch>
             </BrowserRouter>
     );}

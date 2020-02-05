@@ -1,5 +1,5 @@
 import React from "react"
-import TodoForm from "../components/TodoForm"
+import TodoForm from "../Todo/TodoForm"
 import axios from "axios"
 
 class EditTodo extends React.Component {
@@ -18,7 +18,7 @@ class EditTodo extends React.Component {
     } = this.props;
     const url = `/api/v1/edit/${id}`;
     axios.get(url)
-      .then(response => this.setState({ todo: response.data }))
+      .then(response => console.log(response.data))
       .catch(() => this.props.history.push("/todos/error"));
   }
 

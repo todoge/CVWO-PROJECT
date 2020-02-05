@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 import {Link} from "react-router-dom"
 import axios from "axios"
 import { Navbar, NavItem, NavDropdown, MenuItem, Nav } from 'react-bootstrap';
-import "../../assets/stylesheets/todo.scss"
+import "../../../assets/stylesheets/todo.scss"
 
 const MainNav = (props)=>{
        

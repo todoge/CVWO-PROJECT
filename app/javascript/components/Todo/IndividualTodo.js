@@ -3,7 +3,7 @@ import {Card} from "react-bootstrap"
 import {Link} from "react-router-dom"
 import Moment from "react-moment"
 import "moment-timezone"
-import "../../assets/stylesheets/todo.scss"
+import "../../../assets/stylesheets/todo.scss"
 import axios from "axios"
 import {useState, useEffect} from "react"
 

@@ -1,5 +1,7 @@
 class Api::V1::UsersController < ApplicationController
+  
   before_action :require_same_user, only: [:edit,:update]
+  
   def new
     @user = User.new
     render json: @user
@@ -34,6 +36,20 @@ class Api::V1::UsersController < ApplicationController
     render json: @user_info
   end
   
+ def edit
+    @user = User.find(params[:id])
+    @user_info = {
+      username:@user.username,
+      password:@user.password,
+      email:@user.email,
+      id:@user.id,
+      todos:@user.todos,
+      created_at:@user.created_at,
+      updated_at:@user.updated_at,
+    }
+    render json: @user_info
+  end
+  
   def update
     @user = User.find(params[:id])
     if @user.update(user_params)
@@ -49,7 +65,7 @@ class Api::V1::UsersController < ApplicationController
   end
   
   def require_same_user
-    if current_user != @user
+    if !logged_in? && !authorized_user?
       render json: {
         errors: ["You do not have permission to do that!"]
       }

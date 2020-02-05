@@ -1,5 +1,6 @@
 class Api::V1::TodosController < ApplicationController
-
+  
+  before_action :require_user, except: [:index, :show]
   before_action :require_same_user, only: [:edit, :update, :destroy]
   def new
     @todo = Todo.new
@@ -8,10 +9,18 @@ class Api::V1::TodosController < ApplicationController
   
   def create
     @todo = Todo.new(todo_params)
-    if @todo.save
-      render json: @todo
+    if @todo.save{
+        render json: {
+          todo: @todo,
+          flash_msg: "Todo Successfully created",
+          status: 200
+        }
+    }
     else
-      render json: @todos.errors.full_messages
+      render json: {
+        errors: @todos.errors.full_messages,
+        status: 500
+      }
     end
   end
   
@@ -28,9 +37,15 @@ class Api::V1::TodosController < ApplicationController
   def update
     @todo = Todo.find(params[:id])
     if @todo.update(todo_params)
-      render json: @todo
+      render json: {
+        todo: @todo,
+        status: :updated
+      }
     else
-      render json: @todo.errors.full_messages
+      render json: {
+        errors: @todo.errors.full_messages,
+        status: 500
+      }
     end
   end
   
@@ -57,4 +72,5 @@ class Api::V1::TodosController < ApplicationController
       }
     end
   end
+  
 end

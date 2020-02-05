@@ -15,11 +15,20 @@ class ApplicationController < ActionController::Base
   end
   
   def authorized_user?
-    @user == current_user
+    @user.id == current_user
   end
   
   def logout!
     session.clear
   end
 
+  def require_user
+    if !logged_in?
+      render json: {
+        error: "You must be logged in"
+      }
+      redirect_to root
+    end
+  end
+  
 end

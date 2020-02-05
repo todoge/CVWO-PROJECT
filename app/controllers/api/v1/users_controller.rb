@@ -1,5 +1,6 @@
 class Api::V1::UsersController < ApplicationController
   
+  before_action :require_user, except: [:show]
   before_action :require_same_user, only: [:edit,:update]
   
   def new
@@ -65,7 +66,7 @@ class Api::V1::UsersController < ApplicationController
   end
   
   def require_same_user
-    if !logged_in? && !authorized_user?
+    if !authorized_user?
       render json: {
         errors: ["You do not have permission to do that!"]
       }

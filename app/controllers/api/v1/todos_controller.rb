@@ -19,7 +19,7 @@ class Api::V1::TodosController < ApplicationController
     else
       render json: {
         errors: @todos.errors.full_messages,
-        status: 500
+        status: "500"
       }
     end
   end
@@ -41,7 +41,7 @@ class Api::V1::TodosController < ApplicationController
     else
       render json: {
         errors: @todo.errors.full_messages,
-        status: 500
+        status: "500"
       }
     end
   end

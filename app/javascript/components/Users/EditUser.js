@@ -10,7 +10,9 @@ class EditUser extends React.Component{
                email:"",
                username:"",
                password:""
-        }};
+        },
+        errors: []
+    };
         this.onChange = this.onChange.bind(this);
         this.onSubmit = this.onSubmit.bind(this);
      }
@@ -24,8 +26,19 @@ class EditUser extends React.Component{
 
         const url = `/api/v1/users/edit/${id}`;
         axios.get(url)
-            .then(response => this.setState({ user: response.data }))
-            .catch(() => this.props.history.push("/PAGENOTFOUND"));
+            .then(response => {
+                console.log(response.data.status);
+                if(response.data.status === "unauthorized"){
+                    this.props.history.push("/UNAUTHORIZED-ACCESS");
+                }
+                else if(response.data.status === "not_logged_in"){
+                    this.props.history.push("/login");
+                }
+                else{
+                    this.setState({ user: response.data });
+                }
+            });
+ 
     }
     
     onChange(event) {
@@ -35,7 +48,7 @@ class EditUser extends React.Component{
             user:{
                 ...prevState.user,
                 [event.target.name]: event.target.value
-            }}
+            }};
         });
     }
     
@@ -59,15 +72,38 @@ class EditUser extends React.Component{
               "Content-Type": "application/json"
             }}
     )
-    .then(response => this.props.history.push(`/users/${_id}`))
-    .catch(error => console.log(error.message));
-}
- 
+    .then(response => {
+        if (response.data.status === "401") {
+            this.setState({
+              errors: response.data.errors
+            })
+          } else {
+            this.props.history.push(`/users/${_id}`);
+          }
+        });
+    }
+    
+    handleErrors = () => {
+        return (
+            this.state.errors.length !== 0 && 
+            <div className="alert alert-danger mx-3" role="alert">
+                <ul>
+                {this.state.errors.map(error => {
+                    return <li key={error}>{error}</li>
+                  })}
+                </ul>
+            </div>
+        );
+      }
+      
     render(){
         return(
-            <UserForm onChange={this.onChange} onSubmit={this.onSubmit} 
-                formTitle="Edit Profile Page" submitBtn="Edit Profile!" 
-                username ={this.state.user.username} email={this.state.user.email} />
+            <React.Fragment>
+                {this.handleErrors()}
+                <UserForm onChange={this.onChange} onSubmit={this.onSubmit} 
+                    formTitle="Edit Profile Page" submitBtn="Edit Profile!" 
+                    username ={this.state.user.username} email={this.state.user.email} />
+            </React.Fragment>
         )
     }
 

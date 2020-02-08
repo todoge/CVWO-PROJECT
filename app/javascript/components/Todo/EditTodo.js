@@ -5,7 +5,7 @@ import axios from "axios"
 class EditTodo extends React.Component {
     constructor(props) {
     super(props);
-    this.state = { todo: { title: "", description: "" } };
+    this.state = { todo: { title: "", description: "" }, errors:[] };
     this.onChange = this.onChange.bind(this);
     this.onSubmit = this.onSubmit.bind(this);
   }
@@ -17,9 +17,19 @@ class EditTodo extends React.Component {
       }
     } = this.props;
     const url = `/api/v1/edit/${id}`;
+    
     axios.get(url)
-      .then(response => this.setState({ todo: response.data }))
-      .catch(() => this.props.history.push("/todos/error"));
+      .then(response => {
+        if(response.data.status === "unauthorized"){
+                  this.props.history.push("/UNAUTHORIZED-ACCESS");
+              }
+              else if(response.data.status === "not_logged_in"){
+                  this.props.history.push("/login");
+              }
+              else{
+                  this.setState({ todo: response.data })
+              }
+      })
   }
 
 
@@ -56,16 +66,38 @@ class EditTodo extends React.Component {
               "Content-Type": "application/json"
             }}
     )
-        .then(response => this.props.history.push(`/todos/${_id}`))
-        .catch(error => console.log(error.message));
+        .then(response => {
+            console.log(response.data.status);
+            if(response.data.status === '500'){
+                this.setState({errors: response.data.errors});
+            }
+            else{
+                this.props.history.push(`/todos/${_id}`)
+            }
+        })
     }
-
+    
+    handleErrors = () => {
+        return (
+            this.state.errors.length !== 0 && 
+            <div className="alert alert-danger mx-3" role="alert">
+                <ul>
+                {this.state.errors.map(error => {
+                    return <li key={error}>{error}</li>
+                  })}
+                </ul>
+            </div>
+        );
+    }
 
   render() {
     return (
-           <TodoForm onChange={this.onChange} onSubmit={this.onSubmit} 
+            <React.Fragment>
+            {this.handleErrors()}
+            <TodoForm onChange={this.onChange} onSubmit={this.onSubmit} 
                 formTitle="Edit Todo" submitBtn="Edit!" 
                 title={this.state.todo.title} description={this.state.todo.description}/>
+            </React.Fragment>
     )}
 }
 

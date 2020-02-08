@@ -10,7 +10,7 @@ class Home extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      Todos: [],
+      Todos: []
     };
     }
     CancelToken = axios.CancelToken;
@@ -46,7 +46,6 @@ class Home extends React.Component {
         const {Todos} = this.state;
         return(
             <div className="container-fluid">
-                <Flash />
                 <div className="row justify-content-md-center">
                     <div className="col-2">
                     

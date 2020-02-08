@@ -36,6 +36,7 @@ class Login extends React.Component{
         }})
         .then(response => {
           if (response.data.logged_in) {
+            this.props.addFlashMessage("You have Login successfully");
             this.props.handleLogin(response.data);
             this.redirect();
           } else {

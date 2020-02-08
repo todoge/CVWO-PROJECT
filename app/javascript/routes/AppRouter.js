@@ -5,6 +5,7 @@ import axios from "axios"
 // redux
 import {Provider} from "react-redux"
 import configureStore from "../components/Store/ConfigureStore"
+import addFlashMessage from "../components/Messages/Actions/addFlashMessage"
 
 // pages 
 import Nav from "../components/Navbar/MainNav"
@@ -25,7 +26,6 @@ import UpdateUser from "../components/Users/EditUser"
 import Login from "../components/Users/Login"
 
 const store = configureStore();
-console.log(store.getState());
 class App extends React.Component {
     constructor(props) {
     super(props);
@@ -79,8 +79,10 @@ class App extends React.Component {
                         <Route component={UpdateUser} exact path="/users/:id/edit" />
                         <Route component={AboutMe} exact path="/about" />
                         <Route exact path='/users/:id' render={props => (<UserProfile {...props} currentUser={user} loggedInStatus={isLoggedIn} DeleteTodoHandler={this.DeleteTodoHandler}/>)} />
-                        <Route exact path='/login' render={props => (<Login {...props} handleLogin={this.handleLogin} loggedInStatus={isLoggedIn}/>)} />
+                        <Route exact path='/login' render={props => (<Login {...props} addFlashMessage={addFlashMessage} handleLogin={this.handleLogin} loggedInStatus={isLoggedIn}/>)} />
+                        <Route exact path='/UNAUTHORIZED-ACCESS' render={props => (<ErrorRoute {...props} status="UNAUTHORIZED ACCESS" />)}/>
                         <Route render={props => (<ErrorRoute {...props} status="404" />)}/>
+                  
                     </Switch>
                 </BrowserRouter>
             </Provider>

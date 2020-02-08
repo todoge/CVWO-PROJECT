@@ -53,7 +53,10 @@ class Api::V1::UsersController < ApplicationController
     if @user.update(user_params)
         render json: @user
     else
-      render json: @user.errors.full_messages
+      render json: {
+        errors: @user.errors.full_messages,
+        status: "401"
+      }
     end
   end
   
@@ -70,7 +73,8 @@ class Api::V1::UsersController < ApplicationController
   def require_same_user
     if current_user != @user
       render json: {
-        error:"You are not authorized!"
+        error:"You are not authorized!",
+        status: "unauthorized"
       }
     end
   end

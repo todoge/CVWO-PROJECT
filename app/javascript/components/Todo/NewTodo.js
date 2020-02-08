@@ -10,7 +10,6 @@ class NewTodo extends React.Component {
       description: "",
       user_id: "",
       errors:[],
-      flash_msg:[]
     };
 
     this.onChange = this.onChange.bind(this);

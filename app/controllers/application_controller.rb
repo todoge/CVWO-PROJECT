@@ -26,7 +26,7 @@ class ApplicationController < ActionController::Base
   def require_user
     if !logged_in?
       render json: {
-        error: "You must be logged in",
+        errors: ["You must be logged in"],
         status: "not_logged_in"
       }
     end

@@ -13,33 +13,16 @@ class Home extends React.Component {
       Todos: []
     };
     }
-    
-    source = axios.CancelToken.source();
-    abortController = new AbortController();
-  
-    fetchUser = async() => {
-    const url = "/api/v1/todos/index";
-    try {
-      let result = await axios.get(url, {
-        cancelToken: this.source.token,
-        withCredentials: true
-      });
-      return result.data;
-    } catch (error) {
-      if (axios.isCancel(error)) {
-        console.log("Request canceled", error.message);
-        throw new Error("Cancelled");
-      }
-    }
-    };
+   
     componentDidMount() {
-    this.fetchUser()
-        .then(data => this.setState({Todos: data}))
+    const url = "/api/v1/todos/index";
+    axios.get(url)
+        .then(response => this.setState({Todos: response.data}))
         .catch(() => this.props.history.push("/PageNotFound"));
-  }
+    }
     
     componentWillUnmount() {
-        this.source.cancel("Operation canceled by the user.");
+        
     }
     
     render(){

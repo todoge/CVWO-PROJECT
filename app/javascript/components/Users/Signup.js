@@ -1,4 +1,4 @@
-// This is the skeleton component for the Todo form
+// Handle new user sign up
 import React from "react"
 import UserForm from "../Users/UserForm"
 import axios from "axios"

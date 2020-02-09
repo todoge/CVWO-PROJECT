@@ -1,3 +1,4 @@
+// Greeting page for users
 import React from "react";
 import { Link } from "react-router-dom";
 import {jumbotron} from "react-bootstrap"

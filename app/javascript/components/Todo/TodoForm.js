@@ -1,4 +1,4 @@
-// This is the skeleton component for the Todo form
+// This is the form to create and edit todos.
 import React from "react"
 import {Link} from "react-router-dom"
 

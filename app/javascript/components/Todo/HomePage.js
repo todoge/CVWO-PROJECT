@@ -1,10 +1,11 @@
+// Home page 
 import React from "react"
-//import "../../../assets/stylesheets/todo.scss"
 import TodoItem from "../Todo/IndividualTodo"
 import TodoList from "../Todo/TodoList"
 import axios from "axios"
 import {Link} from "react-router-dom"
 import Flash from "../Messages/Flash"
+import Announcement from "../Admin/Announcement"
 import "../../../assets/stylesheets/todo.scss"
 
 class Home extends React.Component {
@@ -31,8 +32,8 @@ class Home extends React.Component {
         return(
             <div className="container-fluid">
                 <div className="row justify-content-md-center">
-                    <div className="col-2">
-                    
+                    <div className="col-2 mt-3">
+                        <Announcement />
                     </div>
                     <div className="col-8">
                         <TodoList title="All the things to do...." 
@@ -41,7 +42,7 @@ class Home extends React.Component {
                         />
                     </div>
                     <div className="col-2">
-                    <Link to="/todos/new" className="btn my-large-btn">New Todo</Link>
+                    <Link to="/todos/new" className="my-3 btn btn-primary my-large-btn white-border">New Todo</Link>
                     </div>
                 </div>
             </div>

@@ -1,3 +1,4 @@
+// component for rendering individual todos. To be used for mapping Todos arrays
 import React from "react"
 import {Card} from "react-bootstrap"
 import {Link} from "react-router-dom"

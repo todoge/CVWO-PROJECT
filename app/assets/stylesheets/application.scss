@@ -9,3 +9,19 @@
 .bg-black{
     background-color: black;
 }
+
+.white-border{
+    border-style: solid;
+    border-color: white;
+}
+
+.black-hr{
+    border-top: 2px solid black;
+}
+
+#announcement{
+    background: rgba(255, 255, 255, 0.6);
+    border-radius: 20px;
+    border-style: solid;
+    border-color: black;
+}

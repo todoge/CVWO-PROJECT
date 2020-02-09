@@ -1,3 +1,4 @@
+// Authentication form for login and signup
 import React from "react"
 import {Link} from "react-router-dom"
 

@@ -1,3 +1,4 @@
+// Template for holding all the todos a component. To be used with individual todos
 import React from "react"
 import "../../../assets/stylesheets/todo.scss"
 

@@ -13,7 +13,7 @@ class Api::V1::TodosController < ApplicationController
         render json: {
           todo: @todo,
           flash_msg: "Todo Successfully created",
-          status: 200
+          status: "200"
         }
     }
     else

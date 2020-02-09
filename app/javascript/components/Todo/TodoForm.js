@@ -19,6 +19,7 @@ const TodoForm = (props)=>{
                   name="title"
                   value={props.title || ""}
                   className="form-control"
+                  maxlength='50'
                   required
                   onChange={props.onChange}
                 />
@@ -30,6 +31,7 @@ const TodoForm = (props)=>{
                 value={props.description || ""}
                 name="description"
                 rows="5"
+                maxlength='200'
                 required
                 onChange={props.onChange}
               />

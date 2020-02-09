@@ -41,8 +41,9 @@ class Signup extends React.Component{
         )
         .then(response => {
           if (response.data.status === 'created') {
-            this.props.handleLogin(response.data)
-            this.redirect();
+            this.props.handleLogout();
+            this.props.handleLogin(response.data);
+            this.props.history.push(`/todos`);
           } else {
             this.setState({
               errors: response.data.errors
@@ -51,10 +52,6 @@ class Signup extends React.Component{
         })
         .catch(error => console.log('api errors:', error))
     };
-    
-    redirect = () => {
-        this.props.history.push('/todos');
-    }
     
     handleErrors = () => {
         return (

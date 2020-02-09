@@ -9,9 +9,10 @@ class Api::V1::UsersController < ApplicationController
   end
   def create
     @user = User.new(user_params)
-    login!
      if @user.save
+      login!
       render json: {
+        logged_in: true,
         user: @user,
         status: :created
       }

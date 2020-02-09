@@ -67,7 +67,6 @@ class EditTodo extends React.Component {
             }}
     )
         .then(response => {
-            console.log(response.data.status);
             if(response.data.status === '500'){
                 this.setState({errors: response.data.errors});
             }

@@ -9,7 +9,7 @@ class NewTodo extends React.Component {
       title: "",
       description: "",
       user_id: "",
-      errors:[],
+      errors:[]
     };
 
     this.onChange = this.onChange.bind(this);
@@ -50,25 +50,10 @@ class NewTodo extends React.Component {
     .then(response => this.props.history.push(`/todos`))
     .catch(error => console.log(error.message));
    }
-
-    handleErrors = () => {
-        return (
-                this.state.errors.length !== 0 && 
-                <div className="alert alert-danger mx-3" role="alert">
-                  <ul>
-                  {this.state.errors.map((error) => {
-                    return <li key={error}>{error}</li>
-                  })}
-                  </ul> 
-                </div>
-            )
-    }
-    
-    
+     
   render() {
         return(
             <React.Fragment>
-            {this.handleErrors()}
             <TodoForm onChange={this.onChange} onSubmit={this.onSubmit} 
                 formTitle="Create a new Todo" submitBtn="Create!" 
                 title={this.state.title} description={this.state.description}/>

@@ -24,5 +24,7 @@ You can view other users by clicking on their names on their posts.
 </ul>
 ===============================================================
 Images courtesy of unSplash.com
+<br />
 [Write-up for this mid submission](Mid-sub.pdf)
+<br />
 [Write-up for this Fianl submission](Final submission.pdf)

@@ -4,7 +4,7 @@ import {Link} from "react-router-dom"
 
 const TodoForm = (props)=>{
     return (
-      <div className="container mt-5">
+      <div className="container whiten-bg my-5 py-5">
         <div className="row">
           <div className="col-sm-12 col-lg-6 offset-lg-3">
             <h1 className="font-weight-normal mb-5">
@@ -35,10 +35,10 @@ const TodoForm = (props)=>{
                 required
                 onChange={props.onChange}
               />
-              <button type="submit" className="btn custom-button mt-3">
+              <button type="submit" className="btn btn btn-outline-success mt-3">
                 {props.submitBtn}
               </button>
-              <Link to="/todos" className="btn btn-link mt-3">
+              <Link to="/todos" className="btn btn-outline-warning mt-3 ml-3">
                 Back to todos
               </Link>
             </form>

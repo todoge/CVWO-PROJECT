@@ -5,6 +5,7 @@ import TodoList from "../Todo/TodoList"
 import axios from "axios"
 import {Link} from "react-router-dom"
 import Flash from "../Messages/Flash"
+import "../../../assets/stylesheets/todo.scss"
 
 class Home extends React.Component {
   constructor(props) {

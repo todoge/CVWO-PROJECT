@@ -49,7 +49,7 @@ const UserForm = (props)=>(
                   onChange={props.onChange}
                 />
                 
-                <button type="submit" className="btn custom-button mt-3">
+                <button type="submit" className="btn btn-outline-info mt-3">
                   {props.submitBtn}
                 </button>
                         

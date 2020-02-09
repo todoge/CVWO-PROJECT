@@ -1,4 +1,5 @@
 import React from "react"
+import "../../../assets/stylesheets/todo.scss"
 
 const TodoList = (props)=>(
     <div className="container">

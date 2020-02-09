@@ -23,6 +23,7 @@ You can view other users by clicking on their names on their posts.
  <li>Encryption with Bcrypt</li>
 </ul>
 ===============================================================
+<br />
 Images courtesy of unSplash.com
 <br />
 [Write-up for this mid submission](Mid-sub.pdf)

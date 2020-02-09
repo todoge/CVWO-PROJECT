@@ -1,7 +1,7 @@
 // This is the skeleton component for the Todo form
-
 import React from "react"
 import {Link} from "react-router-dom"
+import "../../../assets/stylesheets/todo.scss"
 
 const TodoForm = (props)=>{
     return (

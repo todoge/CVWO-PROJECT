@@ -3,7 +3,7 @@ import {Link} from "react-router-dom"
 
 const Aboutme = ()=>(
     <React.Fragment>
-    <div className="container mt-5">
+    <div className="container mt-5 whiten-bg py-3">
         
         <h1>A little about me</h1>
             <div className="font-weight-normal">

@@ -48,8 +48,8 @@ class ShowUser extends React.Component{
                     <React.Fragment>
                         <Profile user={user} authenticated={authenticated} />
                         <div>
-                        <h1 className="mt-5 mb-3 text-center">View All {user.username}'s Posts</h1>
                             <div className="container">
+                            <h1 className="my-3 px-0 mx-0 text-center text-white darken-bg">View All {user.username}'s Posts</h1>
                                 <div className="text-white">
                                     <TodoList title= {"All the things " + user.username + " is doing...."} 
                                     list={user.todos.map((item)=>(<TodoItem key={item.id} 

@@ -50,7 +50,7 @@ const TodoItem = (props)=>{
          };
 
     return(
-        <div className="card-body bg-dark todo-item">
+        <div className="card-body bg-dark todo-item my-2">
             <h5 className="card-title">{props.todo.title.trunc(25,true)}</h5>
             <p className="card-text">{props.todo.description.trunc(35)}</p>
             <div className="d-flex justify-content-between">

@@ -2,7 +2,7 @@ import React from "react"
 import {Link} from "react-router-dom"
 
 const UserForm = (props)=>(
-      <div className="container mt-5">
+      <div className="container mt-5 whiten-bg">
         <div className="row">
           <div className="col-sm-12 col-lg-6 offset-lg-3">
             <h1 className="font-weight-normal mb-5">
@@ -53,7 +53,7 @@ const UserForm = (props)=>(
                   {props.submitBtn}
                 </button>
                         
-                <Link to="/todos" className="btn btn-link mt-3">
+                <Link to="/todos" className="btn btn-link btn-outline-warning mt-3 ml-3">
                   Back to todos
                 </Link>
                 

@@ -13,11 +13,11 @@ class Home extends React.Component {
       Todos: []
     };
     }
-    CancelToken = axios.CancelToken;
-    source = this.CancelToken.source();
+    
+    source = axios.CancelToken.source();
     abortController = new AbortController();
   
-    fetchUser = async () => {
+    fetchUser = async() => {
     const url = "/api/v1/todos/index";
     try {
       let result = await axios.get(url, {

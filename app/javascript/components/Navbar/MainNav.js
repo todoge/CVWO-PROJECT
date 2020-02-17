@@ -28,6 +28,7 @@ const MainNav = (props)=>{
                 <Navbar.Collapse id="basic-navbar-nav">
                   <Nav className="mr-auto">
                     <Nav.Link as={Link} to="/about">About me</Nav.Link>
+                    <Nav.Link href="http://www.pehjunsiang.codes">My website</Nav.Link>
                     <Nav.Link href="https://github.com/todoge/CVWO-PROJECT">Github</Nav.Link>
                     <NavDropdown title="Other Projects" id="basic-nav-dropdown">
                       <NavDropdown.Item href="https://infinite-river-35557.herokuapp.com/">YelpCamp</NavDropdown.Item>
